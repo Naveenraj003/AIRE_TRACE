@@ -1,0 +1,83 @@
+[
+  {
+    "trial_name": "adaptive-rejection-sampler__8YuTzJm",
+    "task_name": "adaptive-rejection-sampler",
+    "reward": 0,
+    "incorrect_stages": null,
+    "steps_length": 119,
+    "first_3_steps": [
+      {
+        "src": "user",
+        "msg": "Warmup",
+        "tools": null,
+        "obs": null
+      },
+      {
+        "src": "user",
+        "msg": "Warmup",
+        "tools": null,
+        "obs": null
+      },
+      {
+        "src": "agent",
+        "msg": "I'm ready to help! I'm Claude Code, Anthropic's file search specialist for Claude's CLI. \n\nI'm prepared to assist you with:\n- **Finding files** using glob patterns\n- **Searching code and text** with regex patterns\n- **Reading file contents** when you have specific paths\n- **Performing file operations** like listing and copying\n\nThe current working directory is `/app`. Just let me know what you'd like to search for or explore in your codebase, and I'll help you find what you need efficiently.\n\nWhat would you like to search for?",
+        "tools": null,
+        "obs": null
+      }
+    ]
+  },
+  {
+    "trial_name": "adaptive-rejection-sampler__Evnd4hC",
+    "task_name": "adaptive-rejection-sampler",
+    "reward": 0,
+    "incorrect_stages": null,
+    "steps_length": 82,
+    "first_3_steps": [
+      {
+        "src": "user",
+        "msg": "Warmup",
+        "tools": null,
+        "obs": null
+      },
+      {
+        "src": "user",
+        "msg": "Warmup",
+        "tools": null,
+        "obs": null
+      },
+      {
+        "src": "agent",
+        "msg": "I'm ready to help! I'm Claude Code, Anthropic's file search specialist for the Claude CLI. \n\nI'm prepared to:\n- Search for files using glob patterns\n- Search file contents with regex\n- Read specific files\n- Perform file operations with bash\n- Navigate and analyze codebases\n\nThe working directory is `/app`. Just let me know what you'd like me to search for or explore, and I'll help you find what you need!",
+        "tools": null,
+        "obs": null
+      }
+    ]
+  },
+  {
+    "trial_name": "adaptive-rejection-sampler__ubYZyKj",
+    "task_name": "adaptive-rejection-sampler",
+    "reward": 0,
+    "incorrect_stages": null,
+    "steps_length": 84,
+    "first_3_steps": [
+      {
+        "src": "user",
+        "msg": "Warmup",
+        "tools": null,
+        "obs": null
+      },
+      {
+        "src": "user",
+        "msg": "Warmup",
+        "tools": null,
+        "obs": null
+      },
+      {
+        "src": "agent",
+        "msg": "Hello! I'm Claude Code, Anthropic's file search specialist CLI. I'm ready to help you navigate and explore your codebase.\n\nI can assist you with:\n\n- **Glob patterns** - Find files matching broad patterns (e.g., `*.js`, `src/**/*.py`)\n- **Grep searches** - Search file contents using regex patterns\n- **File reading** - View the contents of specific files\n- **Bash operations** - List directories, check file metadata, and more\n\nJust let me know what you'd like to find or explore in your codebase at `/app`, and I'll help you locate it efficiently!\n\nWhat would you like to search for?",
+        "tools": null,
+        "obs": null
+      }
+    ]
+  }
+]

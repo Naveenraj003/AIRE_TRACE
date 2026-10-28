@@ -1,0 +1,32 @@
+{
+  "gate2_status": "PASSED",
+  "validation_checks": {
+    "1_no_task_leakage": true,
+    "2_no_prefix_future_events": true,
+    "3_no_terminal_outcome_in_features": true,
+    "4_no_annotation_in_predictive_features": true,
+    "5_prefixes_stop_at_natural_termination": true,
+    "6_max_checkpoint_k30": true,
+    "7_unannotated_failures_preserved": true,
+    "8_unique_episode_ids": true,
+    "9_dataset_version_recorded": true,
+    "10_identical_transfer_feature_schema": true
+  },
+  "manifest_summary": {
+    "terminalbench": {
+      "episodes": 636,
+      "prefixes": 13845,
+      "train_episodes": 163,
+      "calib_episodes": 57,
+      "test_episodes": 416,
+      "tasks": 636,
+      "commit_sha": "7da2e4f45b330be8b6e8f1cff835247723cb3341",
+      "file": "data/processed/manifests\\terminalbench_prefixes_new.parquet"
+    },
+    "tau2": {
+      "episodes": 0,
+      "prefixes": 0,
+      "file": "data/processed/manifests\\tau2_prefixes.parquet"
+    }
+  }
+}

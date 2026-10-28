@@ -1,0 +1,25 @@
+{
+  "terminalbench_total_episodes": 52104,
+  "terminalbench_total_tasks": 89,
+  "strategy_A_episode_random": {
+    "train_episodes": 31262,
+    "calib_episodes": 10420,
+    "test_episodes": 10422,
+    "train_task_count": 89,
+    "calib_task_count": 89,
+    "test_task_count": 89,
+    "task_leakage_overlap": 89
+  },
+  "strategy_B_task_group": {
+    "train_tasks": 53,
+    "calib_tasks": 18,
+    "test_tasks": 18,
+    "train_episodes": 31035,
+    "calib_episodes": 10521,
+    "test_episodes": 10548,
+    "train_success_rate": 0.4208152086354116,
+    "calib_success_rate": 0.40338370877293034,
+    "test_success_rate": 0.3171217292377702,
+    "task_overlap": 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "terminalbench": {
+    "episodes": 636,
+    "prefixes": 13845,
+    "train_episodes": 163,
+    "calib_episodes": 57,
+    "test_episodes": 416,
+    "tasks": 636,
+    "commit_sha": "7da2e4f45b330be8b6e8f1cff835247723cb3341",
+    "file": "data/processed/manifests\\terminalbench_prefixes.parquet"
+  },
+  "tau2": {
+    "episodes": 1980,
+    "prefixes": 50424,
+    "file": "data/processed/manifests\\tau2_prefixes.parquet"
+  }
+}

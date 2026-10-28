@@ -1,0 +1,90 @@
+{
+  "horizon_k": 30,
+  "target_far": 0.05,
+  "late_detections": {
+    "H1": {
+      "total_late_alerts": 19,
+      "unique_late_alert_episodes": 3,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 3,
+      "pct_failed_episodes_with_only_late_alerts": 1.1673,
+      "lateness_min": 22.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 25.8947,
+      "lateness_median": 26.0,
+      "frozen_threshold": 0.86
+    },
+    "H2": {
+      "total_late_alerts": 16,
+      "unique_late_alert_episodes": 2,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 2,
+      "pct_failed_episodes_with_only_late_alerts": 0.7782,
+      "lateness_min": 22.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 25.5,
+      "lateness_median": 25.5,
+      "frozen_threshold": 0.89
+    },
+    "H3": {
+      "total_late_alerts": 3339,
+      "unique_late_alert_episodes": 250,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 51,
+      "pct_failed_episodes_with_only_late_alerts": 19.8444,
+      "lateness_min": 1.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 9.1536,
+      "lateness_median": 8.0,
+      "frozen_threshold": 0.01
+    },
+    "H4": {
+      "total_late_alerts": 91,
+      "unique_late_alert_episodes": 8,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 8,
+      "pct_failed_episodes_with_only_late_alerts": 3.1128,
+      "lateness_min": 11.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 21.1538,
+      "lateness_median": 21.0,
+      "frozen_threshold": 0.93
+    },
+    "M1": {
+      "total_late_alerts": 125,
+      "unique_late_alert_episodes": 12,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 10,
+      "pct_failed_episodes_with_only_late_alerts": 3.8911,
+      "lateness_min": 1.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 17.64,
+      "lateness_median": 19.0,
+      "frozen_threshold": 0.98
+    },
+    "S1": {
+      "total_late_alerts": 19,
+      "unique_late_alert_episodes": 16,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 16,
+      "pct_failed_episodes_with_only_late_alerts": 6.2257,
+      "lateness_min": 6.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 17.8421,
+      "lateness_median": 17.0,
+      "frozen_threshold": 0.97
+    },
+    "S2": {
+      "total_late_alerts": 104,
+      "unique_late_alert_episodes": 10,
+      "total_valid_fail_episodes": 257,
+      "only_late_alert_episodes": 10,
+      "pct_failed_episodes_with_only_late_alerts": 3.8911,
+      "lateness_min": 9.0,
+      "lateness_max": 29.0,
+      "lateness_mean": 18.1442,
+      "lateness_median": 17.0,
+      "frozen_threshold": 0.74
+    }
+  }
+}

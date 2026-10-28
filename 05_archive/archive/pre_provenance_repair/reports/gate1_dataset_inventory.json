@@ -1,0 +1,403 @@
+{
+  "terminalbench": {
+    "dataset": "TerminalBench (yoonholee/terminalbench-trajectories)",
+    "total_episodes": 52104,
+    "total_tasks": 89,
+    "success_count": 20649,
+    "failure_count": 31455,
+    "other_count": 0,
+    "failure_rate": 0.6036964532473514,
+    "models": [
+      "claude-opus-4-5-20251101@anthropic",
+      "claude-opus-4-6@anthropic",
+      "gemini-3-pro-preview@google",
+      "gpt-5.2@openai",
+      "gpt-5.3-codex@openai",
+      "gemini-3-flash-preview@gemini",
+      "claude-sonnet-4-5@anthropic",
+      "gemini-3-pro-preview@Google",
+      "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8@modelscope",
+      "GLM-4.7@z-ai",
+      "claude-haiku-4-5-20251001@anthropic",
+      "claude-opus-4-1-20250805@anthropic",
+      "claude-sonnet-4-5-20250929@anthropic",
+      "minimax-m2.1@minimax",
+      "gpt-5-codex@openai",
+      "gpt-5-mini@openai",
+      "gpt-5-nano@openai",
+      "gpt-5.1-codex-max@openai",
+      "gpt-5.1-codex-mini@openai",
+      "gpt-5.1-codex@openai",
+      "gpt-5@openai",
+      "gpt-5.2-codex@openai",
+      "claude-4.5-sonnet@anthropic",
+      "gemini-3.1-pro-preview@Google",
+      "gemini-2.5-flash@gemini",
+      "gemini-2.5-pro@gemini",
+      "gemini-3-flash-preview@Google",
+      "gemini-3-flash-preview@google",
+      "claude-haiku-4-5@anthropic",
+      "claude-opus-4-5@anthropic",
+      "gemini-3-pro-preview@gemini",
+      "claude-opus-4.6@anthropic",
+      "grok-4-0709@xai",
+      "grok-code-fast-1@xai",
+      "openai/gpt-oss-120b@together_ai",
+      "openai/gpt-oss-20b@together_ai",
+      "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8@together_ai",
+      "moonshotai/Kimi-K2-Instruct-0905@together_ai",
+      "gpt-5.3-codex@OpenAI",
+      "accounts/fireworks/models/glm-4p6@fireworks_ai",
+      "accounts/fireworks/models/minimax-m2@fireworks_ai",
+      "deepseek-v3.2@deepseek",
+      "glm-4.7@z-ai",
+      "glm-5@z-ai",
+      "gpt-5.1@openai",
+      "kimi-k2.5@kimi",
+      "minimax-m2.1@openai",
+      "minimax-m2.5@Minimax",
+      "moonshotai/Kimi-K2-Thinking@together_ai"
+    ],
+    "agents": [
+      "Factory Droid",
+      "Junie",
+      "TerminalBenchAgent",
+      "ante",
+      "aone-agent",
+      "claude-code-enhanced",
+      "claude-code",
+      "codex",
+      "deepagent-harbor",
+      "final",
+      "forge",
+      "gemini-cli",
+      "goose",
+      "ii-agent-simple",
+      "judy",
+      "letta-code",
+      "mini-swe-agent",
+      "mux",
+      "opencode",
+      "openhands",
+      "ruley",
+      "sage",
+      "simple_codex",
+      "spoox-m",
+      "terminus-2",
+      "terminus-3-3"
+    ],
+    "length_min": 0,
+    "length_p25": 0.0,
+    "length_median": 9.0,
+    "length_mean": 31.131487025948104,
+    "length_p75": 30.0,
+    "length_max": 3006
+  },
+  "tracebench_full": {
+    "split": "Tracebench_full",
+    "total_episodes": 3316,
+    "total_tasks": 662,
+    "success_count": 1307,
+    "failure_count": 1903,
+    "failure_rate": 0.5738841978287093,
+    "models": [
+      "Anthropic/Claude-Sonnet-4-20250514-Thinking",
+      "DeepSeek/DeepSeek-V3.2",
+      "DeepSeek/DeepSeekChat",
+      "Moonshot/Kimi-K2-250905",
+      "OpenAI/GPT-5",
+      "Qwen/Qwen3-Coder-480B-A35B-Instruct"
+    ],
+    "agents": [
+      "mini-SWE-agent",
+      "OpenHands",
+      "Terminus2",
+      "SWE-agent"
+    ],
+    "length_min": 1,
+    "length_p25": 18.0,
+    "length_median": 30.0,
+    "length_mean": 44.519903498190594,
+    "length_p75": 48.0,
+    "length_max": 666,
+    "onset_step_stats": {
+      "count": 1751,
+      "min": 1,
+      "median": 11.0,
+      "mean": 18.510565391205027,
+      "max": 309
+    }
+  },
+  "tracebench_verified": {
+    "split": "Tracebench_verified",
+    "total_episodes": 1000,
+    "total_tasks": 558,
+    "success_count": 504,
+    "failure_count": 468,
+    "failure_rate": 0.468,
+    "models": [
+      "OpenAI/GPT-5",
+      "Anthropic/Claude-Sonnet-4-20250514-Thinking",
+      "DeepSeek/DeepSeek-V3.2"
+    ],
+    "agents": [
+      "mini-SWE-agent",
+      "OpenHands",
+      "SWE-agent",
+      "Terminus2"
+    ],
+    "length_min": 20,
+    "length_p25": 28.0,
+    "length_median": 37.0,
+    "length_mean": 46.539,
+    "length_p75": 49.0,
+    "length_max": 327,
+    "onset_step_stats": {
+      "count": 405,
+      "min": 2,
+      "median": 22.0,
+      "mean": 27.66172839506173,
+      "max": 217
+    }
+  },
+  "tau2_bench": {
+    "dataset": "tau-bench (4 historical run files)",
+    "total_episodes": 1980,
+    "total_tasks": 115,
+    "success_count": 1183,
+    "failure_count": 797,
+    "failure_rate": 0.4025252525252525,
+    "length_min": 6,
+    "length_p25": 22.0,
+    "length_median": 28.0,
+    "length_mean": 28.581818181818182,
+    "length_p75": 34.0,
+    "length_max": 62,
+    "files": [
+      {
+        "filename": "gpt-4o-airline.json",
+        "episodes": 200,
+        "tasks": 50,
+        "success": 84,
+        "failure": 116,
+        "failure_rate": 0.58,
+        "len_min": 6,
+        "len_median": 24.0,
+        "len_mean": 26.54,
+        "len_max": 62
+      },
+      {
+        "filename": "gpt-4o-retail.json",
+        "episodes": 460,
+        "tasks": 115,
+        "success": 278,
+        "failure": 182,
+        "failure_rate": 0.39565217391304347,
+        "len_min": 10,
+        "len_median": 28.0,
+        "len_mean": 30.53913043478261,
+        "len_max": 62
+      },
+      {
+        "filename": "sonnet-35-new-airline.json",
+        "episodes": 400,
+        "tasks": 50,
+        "success": 184,
+        "failure": 216,
+        "failure_rate": 0.54,
+        "len_min": 6,
+        "len_median": 26.0,
+        "len_mean": 25.37,
+        "len_max": 62
+      },
+      {
+        "filename": "sonnet-35-new-retail.json",
+        "episodes": 920,
+        "tasks": 115,
+        "success": 637,
+        "failure": 283,
+        "failure_rate": 0.3076086956521739,
+        "len_min": 6,
+        "len_median": 28.0,
+        "len_mean": 29.443478260869565,
+        "len_max": 62
+      }
+    ]
+  },
+  "horizon_analysis": {
+    "terminalbench": [
+      {
+        "horizon_K": 5,
+        "survive_count": 32250,
+        "survive_pct": 61.895439889451865,
+        "truncated_count": 30743,
+        "truncated_pct": 59.00314755105174
+      },
+      {
+        "horizon_K": 10,
+        "survive_count": 25739,
+        "survive_pct": 49.399278366344234,
+        "truncated_count": 24792,
+        "truncated_pct": 47.581759557807466
+      },
+      {
+        "horizon_K": 15,
+        "survive_count": 21320,
+        "survive_pct": 40.91816367265469,
+        "truncated_count": 20588,
+        "truncated_pct": 39.513281130047595
+      },
+      {
+        "horizon_K": 20,
+        "survive_count": 17913,
+        "survive_pct": 34.37931828650391,
+        "truncated_count": 17348,
+        "truncated_pct": 33.294948564409644
+      },
+      {
+        "horizon_K": 25,
+        "survive_count": 15415,
+        "survive_pct": 29.585060647934903,
+        "truncated_count": 14901,
+        "truncated_pct": 28.598572086596043
+      },
+      {
+        "horizon_K": 30,
+        "survive_count": 13298,
+        "survive_pct": 25.5220328573622,
+        "truncated_count": 12924,
+        "truncated_pct": 24.804237678489173
+      },
+      {
+        "horizon_K": 40,
+        "survive_count": 10229,
+        "survive_pct": 19.631890066021803,
+        "truncated_count": 10008,
+        "truncated_pct": 19.20773836941502
+      },
+      {
+        "horizon_K": 50,
+        "survive_count": 8151,
+        "survive_pct": 15.6437125748503,
+        "truncated_count": 7991,
+        "truncated_pct": 15.33663442346077
+      }
+    ],
+    "tracebench_full": [
+      {
+        "horizon_K": 5,
+        "survive_count": 3315,
+        "survive_pct": 99.96984318455972,
+        "truncated_count": 3314,
+        "truncated_pct": 99.93968636911941
+      },
+      {
+        "horizon_K": 10,
+        "survive_count": 3298,
+        "survive_pct": 99.45717732207478,
+        "truncated_count": 3286,
+        "truncated_pct": 99.09529553679131
+      },
+      {
+        "horizon_K": 15,
+        "survive_count": 2852,
+        "survive_pct": 86.00723763570566,
+        "truncated_count": 2760,
+        "truncated_pct": 83.23281061519904
+      },
+      {
+        "horizon_K": 20,
+        "survive_count": 2379,
+        "survive_pct": 71.74306393244873,
+        "truncated_count": 2284,
+        "truncated_pct": 68.87816646562122
+      },
+      {
+        "horizon_K": 25,
+        "survive_count": 1982,
+        "survive_pct": 59.770808202653804,
+        "truncated_count": 1920,
+        "truncated_pct": 57.901085645355856
+      },
+      {
+        "horizon_K": 30,
+        "survive_count": 1660,
+        "survive_pct": 50.06031363088058,
+        "truncated_count": 1604,
+        "truncated_pct": 48.37153196622437
+      },
+      {
+        "horizon_K": 40,
+        "survive_count": 1124,
+        "survive_pct": 33.8962605548854,
+        "truncated_count": 1086,
+        "truncated_pct": 32.750301568154406
+      },
+      {
+        "horizon_K": 50,
+        "survive_count": 774,
+        "survive_pct": 23.341375150784078,
+        "truncated_count": 751,
+        "truncated_pct": 22.64776839565742
+      }
+    ],
+    "tau2_bench": [
+      {
+        "horizon_K": 5,
+        "survive_count": 1980,
+        "survive_pct": 100.0,
+        "truncated_count": 1980,
+        "truncated_pct": 100.0
+      },
+      {
+        "horizon_K": 10,
+        "survive_count": 1957,
+        "survive_pct": 98.83838383838383,
+        "truncated_count": 1929,
+        "truncated_pct": 97.42424242424242
+      },
+      {
+        "horizon_K": 15,
+        "survive_count": 1850,
+        "survive_pct": 93.43434343434343,
+        "truncated_count": 1850,
+        "truncated_pct": 93.43434343434343
+      },
+      {
+        "horizon_K": 20,
+        "survive_count": 1687,
+        "survive_pct": 85.20202020202021,
+        "truncated_count": 1597,
+        "truncated_pct": 80.65656565656566
+      },
+      {
+        "horizon_K": 25,
+        "survive_count": 1246,
+        "survive_pct": 62.929292929292934,
+        "truncated_count": 1246,
+        "truncated_pct": 62.929292929292934
+      },
+      {
+        "horizon_K": 30,
+        "survive_count": 872,
+        "survive_pct": 44.04040404040404,
+        "truncated_count": 715,
+        "truncated_pct": 36.11111111111111
+      },
+      {
+        "horizon_K": 40,
+        "survive_count": 267,
+        "survive_pct": 13.484848484848486,
+        "truncated_count": 198,
+        "truncated_pct": 10.0
+      },
+      {
+        "horizon_K": 50,
+        "survive_count": 56,
+        "survive_pct": 2.8282828282828283,
+        "truncated_count": 43,
+        "truncated_pct": 2.1717171717171717
+      }
+    ]
+  }
+}

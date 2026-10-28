@@ -1,0 +1,109 @@
+--- Slide 1 ---
+21.08.2026
+Submitted by: 
+NAVEEN RAJ B (2303737714821026)
+KRISHNAMOORTHI P (2303737714821018)
+B.E – CSE (Artificial Intelligence & Machine Learning)
+
+AIRE-Trace: A Standardized Prospective Evaluation Protocol for Online Agent-Failure Warning
+--- Slide 2 ---
+Abstract
+As autonomous AI agents execute multi-step tasks, they frequently encounter compounding errors that lead to failure. While recent research has proposed various online warning methods to detect these failures prospectively, these methods are evaluated under differing datasets, prefix definitions, calibration procedures, and evaluation constraints, making direct comparison difficult. AIRE-Trace introduces a standardized, prefix-only evaluation protocol that subjects different warning approaches to identical information, calibration, and evaluation constraints. By evaluating heuristic, classical, and sequence models under a common harness, this research isolates genuine predictive capability from evaluation artifacts, establishing a rigorous foundation for agent reliability.
+       SDB GOAL : SDG 9 – Industry, Innovation and Infrastructure 
+	Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation.
+2
+--- Slide 3 ---
+Scope
+3
+Standardized Ingestion: Normalizing agent execution traces into a canonical schema for unified testing.
+Leakage-Free Prefix Generation: Constructing outcome-independent execution prefixes to simulate real-time monitoring.
+Cross-Method Evaluation: Assessing heuristic, classical machine-learning, and sequence models under identical constraints.
+Ranking-Stability Analysis: Measuring how consistently methods rank against each other across different evaluation metrics.
+
+--- Slide 4 ---
+Objective
+Primary Objective: To determine whether comparative performance claims for online agent-failure warning methods remain consistent when evaluated under a standardized prospective protocol.
+Specific Objectives:
+Enforce strict separation of training, calibration, and test data to prevent task-definition leakage.
+Calibrate operational alert thresholds under a strictly controlled False-Alarm Rate (e.g., ≤ 5%).
+Quantify method ranking stability using Pairwise Direction Consistency (PDC).
+
+4
+--- Slide 5 ---
+Literature Review
+5
+Literature Gap: Existing studies use different datasets, prefix definitions, calibration procedures, and evaluation metrics, making direct cross-method comparison difficult.
+--- Slide 6 ---
+Problem Statement
+AI agents can fail during multi-step execution, creating a critical need for early failure warning. While multiple warning approaches have been proposed, they are currently evaluated under varying conditions, meaning their reported performance cannot be compared fairly. A standardized evaluation protocol is urgently needed to evaluate different warning approaches under identical constraints to distinguish genuine predictive capability from evaluation artifacts.
+Problem in one line: Reported performance claims for online agent-failure warning methods cannot be fairly compared due to a lack of standardized evaluation constraints.
+
+6
+--- Slide 7 ---
+Methodology
+7
+AIRE-Trace is not a new failure detector; it is a standardized prospective, prefix-only evaluation protocol for fairly comparing online agent-failure warning methods.
+Evaluation Workflow:
+AGENT TRACE → SANITIZE → PREFIX → CALIBRATE → PROSPECTIVE TEST → METRICS → STATISTICS → FAIR COMPARISON
+Key Methodological Controls:
+[Outcome-Independent Checkpoints] Evaluator receives no hindsight advantages.
+[Terminal-Event Sanitization] Strict removal of outcome-bearing content from features.
+[Prefix-Only Evaluation] Warning decisions use only information available in the observed prefix; future/post-onset information is not available to the prospective evaluator.
+[Frozen Thresholds] Operational thresholds are frozen on an isolated calibration set.
+[Episode-Balanced Weighting] Prevents long, noisy trajectories from dominating metrics.
+
+--- Slide 8 ---
+Results & Discussion
+Key Findings:
+Random Forest (S1) achieved the highest observed AUROC of 0.6371.
+Very low Recall@5% FAR: Operational early-warning recall was near zero under the strict FAR constraint.
+PDC = 0.8294: Comparative method rankings are partially unstable depending on the chosen metric.
+Error/retry features had the strongest observed contribution to predicting impending failures.
+Performance Summary (Mode A Test, K=30, Target FAR 5%):
+
+8
+--- Slide 9 ---
+Conclusion
+Standardized evaluation is necessary; AIRE-Trace provides a common prospective, prefix-only framework for fair comparison.
+Discrimination alone does not guarantee useful early warning.
+Because comparative method rankings shift depending on the evaluation metric, standardized testing is essential to isolate genuine predictive capability from methodological artifacts.
+9
+--- Slide 10 ---
+Publication Status
+Paper: AIRE-Trace: A Standardized Prospective Evaluation Protocol for Online Agent-Failure Warning
+Current Research Status: Manuscript Prepared
+Publication Status: Not Yet Submitted
+Publication Focus: Standardized prospective evaluation, prefix-only methodology, fair cross-method comparison, and statistical evaluation.
+10
+--- Slide 11 ---
+References
+[1] X. Liu et al., "AgentBench: Evaluating LLMs as Agents," in Proc. ICLR, 2024. arXiv:2308.03688.
+[2] C. Ma et al., "AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents," in Proc. NeurIPS, 2024. arXiv:2401.13178.
+[3] G. Mialon et al., "GAIA: a benchmark for General AI Assistants," in Proc. ICLR, 2024. arXiv:2311.12983.
+[4] D. Deshpande et al., "TRAIL: Trace Reasoning and Agentic Issue Localization," arXiv preprint arXiv:2505.08638, 2025.
+[5] S. Barke et al., "AgentRx: Diagnosing AI Agent Failures from Execution Trajectories," arXiv preprint arXiv:2602.02475, 2026.
+[6] J. Liu et al., "Who&When Pro: Can LLMs Really Attribute Failures in AI Agents?" arXiv preprint arXiv:2607.09996, 2026.
+[7] X. Huang et al., "PrefixGuard: From LLM-Agent Traces to Online Failure-Warning Monitors," arXiv preprint arXiv:2605.06455, 2026.
+
+11
+--- Slide 12 ---
+References
+[8] B. Zhang et al., "AgentForesight: Online Auditing for Early Failure Prediction in Multi-Agent Systems," arXiv preprint arXiv:2605.08715, 2026.
+[9] L. Advani, "Trajectory Guard: A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI," arXiv preprint arXiv:2601.00516, 2026.
+[10] L. Advani, "From Confident Closing to Silent Failure: Characterizing False Success in LLM Agents," arXiv preprint arXiv:2606.09863, 2026.
+[11] S. Fan et al., "AgentProcessBench: Diagnosing Step-Level Process Quality in Tool-Using Agents," arXiv preprint arXiv:2603.14465, 2026.
+[12] A. C. Cameron, J. B. Gelbach, and D. L. Miller, "Bootstrap-Based Improvements for Inference with Clustered Errors," Rev. Econ. Stat., vol. 90, no. 3, pp. 414-427, 2008.
+[13] S. Holm, "A Simple Sequentially Rejective Multiple Test Procedure," Scand. J. Stat., vol. 6, no. 2, pp. 65-70, 1979.
+12
+--- Slide 13 ---
+References
+[14] S. Yao et al., "ReAct: Synergizing Reasoning and Acting in Language Models," in Proc. ICLR, 2023.
+[15] N. Shinn et al., "Reflexion: Language Agents with Verbal Reinforcement Learning," in Proc. NeurIPS, 2023.
+[16] L. Wang et al., "A Survey on Large Language Model based Autonomous Agents," arXiv preprint arXiv:2308.11432, 2023.
+[17] T. Kojima et al., "Large Language Models are Zero-Shot Reasoners," in Proc. NeurIPS, 2022.
+[18] M. Shridhar et al., "ALFWorld: Aligning Text and Embodied Environments for Interactive Learning," in Proc. ICLR, 2021.
+[19] X. Deng et al., "Mind2Web: Towards a Generalist Agent for the Web," in Proc. NeurIPS, 2023.
+[20] W. X. Zhao et al., "A Survey of Large Language Models," arXiv preprint arXiv:2303.18223, 2023.
+13
+--- Slide 14 ---
+Thank You !

@@ -1,0 +1,11 @@
+# Random Forest Baseline Configuration (S1)
+
+models:
+  S1:
+    type: "random_forest"
+    name: "Random Forest (S1)"
+    n_estimators: 100
+    max_depth: 6
+    min_samples_split: 5
+    random_state: 42
+    scale_features: false

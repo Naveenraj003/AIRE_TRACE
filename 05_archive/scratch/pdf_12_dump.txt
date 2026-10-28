@@ -1,0 +1,742 @@
+
+
+==================== PAGE 1 ====================
+
+AIRE-Trace: A Standardized Prospective Evaluation
+and Trajectory Risk Decomposition Framework for
+Online Agent-Failure Warning
+C. Janani
+Assistant Professor
+Dept. of CSE (AIML)
+K.S. Rangasamy College of Technology
+Tiruchengode–637215, India
+srijanani2030@gmail.com
+B. Naveen Raj
+Dept. of CSE (AIML)
+K.S. Rangasamy College of Technology
+Tiruchengode–637215, India
+naveenrajbv1@gmail.com
+P. Krishnamoorthi
+Dept. of CSE (AIML)
+K.S. Rangasamy College of Technology
+Tiruchengode–637215, India
+pkrishnamoorthi126@gmail.com
+L. Maadhava Kumar L
+Associate Software Developer
+Mphasis
+Chennai, India
+maadhava05@gmail.com
+K. Praveen
+Assistant Professor
+Dept. of CSE (AIML)
+K.S. Rangasamy College of Technology
+Tiruchengode–637215, India
+praveen.k.erd@gmail.com
+C. Rajan
+Professor
+Dept. of CSE (AIML)
+K.S. Rangasamy College of Technology
+Tiruchengode–637215, India
+rajancsg@gmail.com
+Abstract—The increasing deployment of autonomous tool-
+using AI agents creates demand for mechanisms that provide
+prospective warning of task failure from partial execution
+trajectories, rather than retrospective diagnosis after failure
+has occurred. Prior work on online agent-failure warning has
+demonstrated that prefix-based failure prediction is viable, but
+existing methods each use their own datasets, prefix definitions,
+calibration procedures, and metrics, making comparative claims
+difficult to interpret.This paper presents AIRE-Trace, a stan-
+dardized prospective evaluation protocol for online agent-failure
+warning that fixes information visibility, failure-target definition,
+alert semantics, calibration procedure, false-alarm constraints,
+and lead-time measurement. We further propose trajectory risk
+decomposition (dyn_comp), which combines static and dynamic
+risk signals from trajectory prefixes to improve prospective recall
+under the protocol’s false-alarm budget.
+The protocol is applied to representative heuristic (H1–H4),
+classical machine-learning (M1), sequence-model (S1, S2), and
+risk-decomposition (dyn_comp) warning methods on 636 recon-
+structed episodes (a 19.18% strict-retention sample of the 3,316
+declared source rows), split task-disjointly into TRAIN (163),
+CALIBRATION (57), and TEST (416). Under the stringent
+5% false-alarm rate (FAR) constraint, dyn_comp achieved a
+modest prospective Recall@FAR of 0.1167 (FAR = 0.0404),
+compared with the M1 baseline at 0.0078 (FAR = 0.0303). A
+paired episode-cluster bootstrap (B = 10,000) confirmed the
+difference (∆= +0.1089, 95% CI [0.0706, 0.1496], padj = 9.999×
+10−5). Baseline AUROC ranged from 0.5074 to 0.6371. Fea-
+ture ablation showed that omitting cumulative error and retry
+signals yielded the largest observed drop in discrimination
+(∆AUROC = −0.1069). Pairwise Direction Consistency across
+seven baselines was 0.8294 (21/21 informative pairs), indicating
+largely but not universally consistent rankings.
+Index Terms—Agentic systems, failure warning, prospective
+evaluation, trajectory analysis, standardized benchmarking, on-
+line monitoring, calibration, bootstrap inference, risk decompo-
+sition.
+I. INTRODUCTION
+The deployment of autonomous agentic systems—agents
+that plan, invoke tools, and execute multi-step tasks with
+limited human oversight—has raised reliability questions that
+standard outcome benchmarking cannot fully answer. Bench-
+marks such as AgentBench [1], AgentBoard [2], and GAIA [3]
+measure whether an agent ultimately succeeds or fails, but
+this final-outcome evaluation is insufficient for monitoring
+purposes: by the time the outcome is observed, the agent has
+already consumed resources and potentially caused unrecov-
+erable side effects.
+Prospective failure warning addresses a complementary
+question: given only the portion of the trajectory observed
+so far (a prefix), can a monitor produce a timely alert that
+the episode will likely fail before the outcome is known?
+This early-warning capability would enable intervention—
+pausing the agent, escalating to human review, or switching
+strategies—before failure becomes irreversible.
+Recent work has shown that prefix-based failure prediction
+is achievable. PrefixGuard [7] demonstrates prefix-based warn-
+ing monitors on WebArena and TerminalBench. AgentFore-
+sight [8] employs an RL-trained 7B-parameter auditor. Trajec-
+tory Guard [9] applies real-time sequence anomaly detection.
+However, these methods each use their own datasets, prefix
+definitions, calibration procedures, and metrics. No existing
+work cross-compares heuristic, classical-ML, and sequence-
+model warning methods under one fixed protocol, making it
+unclear whether reported advantages are robust to a common
+evaluation protocol or partially artifacts of differing evaluation
+conditions.
+
+
+==================== PAGE 2 ====================
+
+AIRE-Trace addresses this gap with two contributions:
+1) A standardized prospective evaluation protocol for
+online agent-failure warning—fixing information visi-
+bility (pre-onset prefix only), failure-target definition,
+alert semantics, calibration procedure (FAR ≤5%),
+and statistical inference (episode-cluster bootstrap with
+Holm–Bonferroni correction).
+2) Trajectory risk decomposition (dyn_comp), which
+combines static base-rate and dynamic trajectory-prefix
+risk signals to improve prospective recall under the
+protocol’s false-alarm constraint.
+AIRE-Trace is an offline evaluator of pre-recorded agent
+trajectories. It does not perform live intervention.
+Research Question. Do comparative performance claims
+for online agent-failure warning methods remain consistent
+when methods are evaluated under identical information,
+target, alert, calibration, lead-time, and compute constraints?
+II. RELATED WORK AND COMPARATIVE GAP
+A. Agent Outcome Benchmarking
+Outcome benchmarks [1]–[3] establish performance base-
+lines for agent capabilities but do not provide mechanisms for
+prospective mid-execution monitoring. TRAIL [4] articulates
+the need for robust evaluation of agentic traces, presenting 148
+human-annotated traces for trace-debugging evaluation.
+B. Retrospective Failure Attribution
+Post-hoc attribution methods identify where or why a
+trajectory went wrong after failure has occurred. Agen-
+tRx [5] provides post-hoc localization of critical failure steps.
+Who&When Pro [6] addresses retrospective attribution using
+12,326 trajectories. AgentProcessBench [11] introduces step-
+level quality evaluation with 8,509 human-labeled annotations.
+These approaches require the complete trajectory and are
+retrospective by construction.
+C. Prospective Agent-Failure Warning
+PrefixGuard [7] achieves AUPRC of 0.900 on WebArena
+and 0.557 on TerminalBench under its own evaluation pro-
+tocol. Direct numerical comparison with AIRE-Trace results
+is not appropriate due to differences in prefix representation,
+feature regime, and calibration protocol. AgentForesight [8]
+employs an RL-trained auditor. Trajectory Guard [9] applies
+sequence anomaly detection. Advani [10] characterizes false
+success in LLM agents, showing that TF-IDF detectors achieve
+AUROC 0.83–0.95 for false-success detection. These works
+collectively establish prospective warning as a viable research
+direction but operate in isolation without cross-comparison
+under a common protocol.
+D. Evaluation Methodology
+Cameron, Gelbach, and Miller [12] establish the pairs
+cluster bootstrap as the appropriate inference procedure when
+observations are dependent within clusters. Holm [13] intro-
+duced the sequentially rejective multiple test procedure for
+familywise error rate control.
+Fig. 1. AIRE-Trace standardized prospective evaluation pipeline. Trajectories
+are provenance-audited before episode-level splitting; trainable methods are
+fitted on TRAIN, operating thresholds are selected on CALIBRATION under
+the FAR constraint, and frozen thresholds are applied to the TEST population.
+Fig. 2.
+Prospective prefix evaluation semantics. At each checkpoint, the
+monitor observes only the trajectory prefix. Alerts at or before the annotated
+failure onset constitute prospective detections; alerts after onset are analyzed
+separately as late detections.
+III. AIRE-TRACE METHODOLOGY
+The AIRE-Trace prospective evaluation protocol enforces
+strict separation between pre-onset trajectory monitoring, of-
+fline threshold calibration, and test-set prospective evaluation,
+as illustrated in Fig. 1.
+A. Prospective Evaluation Protocol
+An agent episode consists of a sequence of events
+e1, e2, . . . , eT produced by an autonomous agent executing a
+task. Each event contains role information (agent, tool, user,
+system), action type, tool names, and error indicators. The
+episode has an eventual outcome: eventual_success or
+eventual_failure.
+For TerminalBench episodes, the failure onset is defined as
+tonset = min(incorrect_step_ids). Episodes lacking
+this annotation are excluded from onset-dependent metrics
+(Recall@FAR, lead time) but remain eligible for ranking
+metrics (AUROC, AUPRC).
+At checkpoint t
+∈
+{1, . . . , min(Ti, K)} with horizon
+K = 30, a monitor accesses only the prefix (e1, . . . , et).
+The checkpoint schedule is outcome-independent and episode-
+symmetric. An alert at checkpoint t is prospective if and only
+if t ≤tonset; an alert at t > tonset is a late detection and is
+reported separately in the operational analysis. The prospective
+evaluation semantics are illustrated in Fig. 2.
+
+
+==================== PAGE 3 ====================
+
+Given a prefix at checkpoint t, a monitor produces a risk
+score s(e1, . . . , et) ∈[0, 1]. An alert is raised when s ≥τ for
+a calibrated threshold τ. Episode-level FAR is defined in (1):
+FAR = |{i : success(i) ∧∃t : alertt}|
+|{i : success(i)}|
+(1)
+Each episode contributes equally to prefix-level met-
+ric computation via episode-balanced weighting: wi,t
+=
+1/ min(Ti, K).
+Evaluation Modes. Mode A (TerminalBench, primary):
+supports AUROC, AUPRC, Brier, ECE, prospective Re-
+call@FAR, lead time, and late-detection analysis. Mode B (τ 2-
+Bench, diagnostic): reports eventual-outcome ranking metrics
+only. Mode B metrics must not be compared directly to
+Mode A metrics.
+B. Dataset and Task-Disjoint Splits
+The primary corpus is Tracebench (3,316 declared source
+rows). After provenance auditing and reconstruction, 2,655
+rows were structurally invalid due to missing trajectory ar-
+tifacts, 25 contained unreachable artifact paths, and network
+recovery attempts yielded zero additional valid episodes,
+leaving 636 canonical episodes (19.18%) for benchmarking.
+These exclusions represent strict structural data-availability
+attrition; however, missingness cannot be assumed to be miss-
+ing completely at random (MCAR). Consequently, systematic
+selection bias cannot be ruled out, and all empirical findings
+remain formally bounded to this audited 636-episode cohort.
+The overall pipeline structure is depicted in Fig. 1.
+The 636 episodes are split task-disjointly (entire episode to
+exactly one split): TRAIN (163), CALIBRATION (57), TEST
+(416). The TEST population contains 317 failed episodes (257
+with valid onset annotations, 60 without), and 99 successful
+episodes.
+C. Threshold Calibration and Alert Semantics
+The calibration procedure selects τ ∗= arg maxτ Recall(τ)
+subject to FARcalib(τ) ≤0.05, on the CALIBRATION split
+only. Ties are broken by lower FAR first, then higher threshold.
+The selected threshold τ ∗is frozen before TEST evaluation.
+D. Trajectory Risk Decomposition
+The trajectory risk decomposition method (dyn_comp)
+decomposes the failure risk score into an empirical static task-
+difficulty prior and a dynamic prefix-derived risk signal in (2):
+sdyn comp(t) = PM1(fail | e1:t) −Pstatic(fail | task)
+(2)
+where PM1(fail | e1:t) is the dynamic failure probability
+predicted by the logistic baseline M1 from the 13 prefix
+features x1:t, and Pstatic(fail | task) is a static prior fitted
+on the TRAIN split from task category and difficulty failure
+base rates. Both components are strictly computable at prefix
+checkpoint t without future trajectory leakage. The residual
+score sdyn comp(t) ∈[−1, 1] isolates excess dynamic risk
+relative to static task expectations. The operating threshold
+τ ∗= 0.5522 is calibrated on CALIBRATION under the
+FAR ≤5% constraint, identical to all baselines.
+TABLE I
+WARNING METHOD REGISTRY
+ID
+Family
+Method / Key Parameters
+H1
+Heuristic
+Tool-error rate (min-max norm)
+H2
+Heuristic
+Retry-count (min-max norm)
+H3
+Heuristic
+Repeated-action
+(min-max
+norm)
+H4
+Heuristic
+Combined (sigmoid z-score avg)
+M1
+Classical
+Logistic
+Regression
+(C=1.0,
+lbfgs)
+S1
+Sequence†
+Random
+Forest
+(100
+trees,
+depth=6)
+S2
+Sequence
+GRU (hidden=64, 1 layer, 10
+epochs)
+dyn_comp
+Proposed
+Trajectory risk decomposition
+L
+Semantic
+LLM monitor (not evaluated)
+†S1 classified Sequence by registry; implemented as
+Random Forest tabular ensemble. L skipped: RTX 2050, 4 GB.
+IV. EXPERIMENTAL SETUP
+A. Models and Baselines
+Seven baseline methods and one proposed method are
+registered (Table I):
+All
+trainable
+models
+use
+13
+Category-A
+structural
+features computed from the prefix: feat_steps_so_far
+(cumulative
+step
+count),
+four
+actor-role
+counts
+(agent,
+tool,
+user,
+system),
+three
+action-type
+counts
+(message,
+tool call,
+tool result),
+feat_tool_error_count
+(cumulative tool errors), feat_retry_count (consecutive
+error
+sequences),
+feat_unique_tools_used,
+feat_tool_call_ratio,
+and
+feat_repeated_action_last2.
+Models
+are
+fitted
+on TRAIN with episode-balanced sample weights; all use
+random seed 42. S1 is registered within the sequence-
+comparison tier as a non-recurrent competitive baseline that
+maps cumulative prefix trajectory statistics into a tabular
+ensemble, directly contrasting with S2’s hidden-state GRU
+recurrence.
+B. Metrics and Statistical Analysis
+Ranking metrics (prefix-level, episode-balanced): AUROC,
+AUPRC, Brier Score, ECE.
+Operational metrics (episode-level): FAR (denominator:
+99 successful TEST episodes), Recall@FAR (denominator:
+257 valid annotated failure episodes).
+Bootstrap
+inference: Paired episode-cluster bootstrap.
+Standard baseline comparisons use B = 1,000 iterations. The
+primary dyn_comp vs. M1 comparison uses B = 10,000
+iterations. Episodes are resampled with replacement at the
+episode level (not prefix level) to preserve within-episode de-
+pendence [12]. Frozen thresholds are held constant across re-
+samples. Prefix-level resampling is incorrect because prefixes
+within the same episode share the outcome label, violating
+independence and producing artificially narrow CIs.
+Multiple-comparison correction: Holm–Bonferroni step-
+down correction [13] across predefined comparison families,
+α = 0.05.
+
+
+==================== PAGE 4 ====================
+
+TABLE II
+PRIMARY MODE A TEST PERFORMANCE (K=30, FAR ≤5%)
+Model
+τ
+AUROC
+Recall@FAR
+FAR
+H1
+0.86
+0.6205
+0.0000
+0.0000
+H2
+0.89
+0.5752
+0.0000
+0.0000
+H3
+0.01
+0.5074
+undef.†
+1.0000
+H4
+0.93
+0.6135
+0.0000
+0.0202
+M1
+0.98
+0.6215
+0.0078
+0.0303
+S1
+0.97
+0.6371
+0.0000
+0.0404
+S2
+0.74
+0.5496
+0.0000
+0.0000
+dyn_comp
+0.5522
+0.3593
+0.1167
+0.0404
+†H3 Recall@FAR undefined: calibration FAR = 1.000.
+Pairwise Direction Consistency (PDC): For each model
+pair (A, B), wins W and losses L are counted across AUROC,
+AUPRC, Recall@FAR, and ECE. Pairs with W+L=0 are
+excluded. If W=2 and L=2, pair PDC = 0.50; otherwise
+PDC = max(W, L)/(W + L). Overall PDC is the arithmetic
+mean of informative pair PDCs, always reported with its
+coverage figure.
+V. RESULTS
+A. Primary Prospective Warning Results
+Table II presents the primary Mode A TEST performance.
+Under the FAR ≤5% constraint, dyn_comp achieved Re-
+call@FAR of 0.1167 with FAR of 0.0404 (frozen threshold
+0.5522). The M1 baseline achieved Recall@FAR of 0.0078
+with FAR of 0.0303 (frozen threshold 0.98). All remaining
+baselines achieved Recall@FAR of 0.0000, with the exception
+of H3, whose Recall@FAR is undefined because its calibration
+FAR reached 1.000 (the 5% constraint was not achievable).
+In Table II, dyn_comp’s protocol-consistent episode-
+balanced prefix AUROC is 0.3593. Because dyn_comp sub-
+tracts the static task-difficulty prior (Pstatic, whose observed
+failure-ranking AUROC is 0.6940), early non-erroneous pre-
+fixes of difficult failed episodes can yield negative residual
+scores, producing a sub-0.5 global prefix AUROC. The resid-
+ual is an operational anomaly detector rather than a monotonic
+global risk score; the primary evaluation remains thresholded
+prospective warning. At the frozen operating threshold (τ ∗=
+0.5522), dyn_comp fires only on extreme positive dynamic
+risk spikes, achieving Recall@FAR of 0.1167 at FAR of
+0.0404, while the M1 baseline yields Recall@FAR of 0.0078
+at FAR of 0.0303.
+Primary paired comparison. Table III presents the primary
+dyn_comp vs. M1 bootstrap result.
+B. Baseline Comparative Results
+Among the seven baselines, Mode A AUROC ranged from
+0.5074 (H3) to 0.6371 (S1). S1 (Random Forest, AUROC
+= 0.6371, 95% CI [0.5885, 0.6745]) achieved the highest
+observed AUROC, as visualized in Fig. 3.
+Paired episode-cluster bootstrap testing (B = 1,000, Holm–
+Bonferroni correction) showed S1 had statistically significant
+AUROC advantages over S2 (∆= +0.0875, padj = 0.006),
+H2 (∆= +0.0619, padj = 0.006), and H3 (∆= +0.1297,
+TABLE III
+PRIMARY D Y N_C O M P VS. M1 BOOTSTRAP COMPARISON
+Quantity
+Value
+Metric
+Recall@FAR (prospective)
+Observed ∆(dyn comp −M1)
++0.1089
+95% CI
+[0.0706, 0.1496]
+Bootstrap B
+10,000
+Bootstrap unit
+Episode-cluster (joint)
+padj
+9.999 × 10−5
+Reject H0 at α = 0.05
+Yes
+dyn_comp FAR
+0.0404
+M1 FAR
+0.0303
+Fig. 3. Mode A TEST AUROC for baseline warning methods (K=30). Error
+bars denote 95% episode-cluster bootstrap confidence intervals. S1 (Random
+Forest) achieved the highest observed AUROC (0.6371).
+padj = 0.006), but not over M1, H1, or H4. For AUPRC,
+S1’s advantage was statistically significant only against S2
+(padj = 0.012).
+Despite S1’s highest AUROC, its prospective Recall@FAR
+at FAR ≤5% was 0.0000, illustrating a fundamental gap
+between discriminative performance and operational early-
+warning utility.
+FAR sensitivity. S1 evaluated at FAR targets of 1%, 5%,
+and 10% achieved identical frozen thresholds at 1% and
+5% (τ = 0.97, Recall@FAR = 0.0000). At 10% FAR target
+(τ = 0.93), Recall@FAR improved to 0.0973, indicating the
+recall/FAR trade-off.
+C. Ranking Consistency
+The overall Pairwise Direction Consistency (PDC) across
+the seven baselines (H1, H2, H3, H4, M1, S1, S2) was 0.8294
+with coverage of 0.881 across 21/21 informative pairs. This
+indicates that the majority of pairwise ranking directions are
+consistent across metrics, while approximately 17% of com-
+parisons contain at least one metric disagreement. dyn_comp
+is not included in this baseline PDC matrix.
+D. Ablation and Robustness
+Feature ablation (A0–A6) on S1 under the frozen protocol
+is summarized in Table IV. Removing error and retry signals
+(feat_tool_error_count and feat_retry_count;
+ablation A4) produced the largest observed discrimination
+
+
+==================== PAGE 5 ====================
+
+TABLE IV
+S1 FEATURE ABLATION RESULTS (MODE A, K=30)
+ID
+Removed Features
+AUROC
+∆
+A0
+None (full baseline)
+0.6371
+—
+A1
+steps_so_far
+0.6357
+−0.0014
+A2
+4 actor-role features
+0.6335
+−0.0036
+A3
+3 action-type features
+0.6383
++0.0012
+A4
+error_count + retry
+0.5302
+−0.1069
+A5
+tools + ratio
+0.6360
+−0.0011
+A6
+repeated_action
+0.6341
+−0.0030
+TABLE V
+OPERATIONAL WARNING PROFILE (MODE A, K=30, FROZEN τ)
+Model
+FA
+Ep.
+TEST
+FAR
+Only-Late
+Ep. (%)
+Total
+Alerts
+Mean/
+Ep.
+H1
+0
+0.0000
+2 (0.78%)
+19
+0.046
+H2
+0
+0.0000
+2 (0.78%)
+16
+0.039
+H3
+99
+1.0000
+51 (19.84%)
+8,012
+19.260
+H4
+2
+0.0202
+8 (3.11%)
+119
+0.286
+M1
+3
+0.0303
+10 (3.89%)
+161
+0.387
+S1
+4
+0.0404
+16 (6.23%)
+25
+0.060
+S2
+0
+0.0000
+10 (3.89%)
+107
+0.257
+FA Ep.: false-alarm episodes (out of 99 successful TEST episodes).
+Only-Late: failure episodes with solely post-onset alerts (out of 257).
+degradation (∆AUROC = −0.1069, from 0.6371 to 0.5302).
+All other ablations produced |∆AUROC| < 0.004. This
+identifies error and retry signals as the feature group whose
+removal produced the largest observed discrimination loss
+under S1 and the evaluated feature set.
+E. Operational Analysis
+The operational analysis examines false alarms, late detec-
+tions, and alert burden under frozen thresholds, summarized in
+Table V. H3 (FAR = 1.000) alerts on all 99 successful TEST
+episodes and 19.84% of valid failure episodes received only
+late (post-onset) alerts (accounting for 3,339 late alerts out of
+8,012 total alerts across the TEST split). This illustrates why
+the onset boundary must be explicitly enforced: H3’s activity
+represents retrospective diagnosis, not prospective warning.
+Among models operating within the FAR target, S1 pro-
+duced the lowest alert burden (25 total alerts, max 2 per
+episode) but zero prospective recall. dyn_comp, with 0.0404
+FAR, achieved the only non-trivial prospective recall (0.1167)
+among all evaluated methods.
+VI. DISCUSSION AND LIMITATIONS
+A. The Operational Recall Collapse
+The most critical finding is the collapse of prospective
+Recall@FAR under the 5% FAR constraint: the baselines with
+a defined Recall@FAR achieved zero or near-zero prospective
+recall; H3 was undefined because the 5% FAR constraint
+was not achievable. S1’s AUROC of 0.6371 demonstrates
+meaningful probabilistic discrimination, but the discriminative
+signal is insufficient to generate threshold-based alerts on in-
+dividual failure episodes before onset without FAR violations.
+dyn_comp’s Recall@FAR of 0.1167 represents a statistically
+significant improvement over M1’s 0.0078, but the absolute
+recall remains modest. The gap between discriminative ranking
+capability and operational early-warning utility is a structural
+finding of this evaluation.
+B. Selective Statistical Significance
+The bootstrap-tested AUROC advantages for S1 are statis-
+tically significant only against S2, H2, and H3. Its advan-
+tages over M1, H1, and H4 are not statistically significant
+after Holm–Bonferroni correction. The empirical ordering
+S1 > M1 > H1 > H4 by point estimate does not reflect
+universally distinguishable statistical differences.
+C. Limitations
+Population coverage and selection bias. The 636 re-
+tained episodes represent 19.18% of the 3,316 declared source
+rows. Because exclusion was driven by artifact corruption
+and unreachable paths rather than random subsampling, the
+retained cohort may systematically differ from the excluded
+episodes across task complexity, agent run length, or failure
+distribution. The reported failure distributions and warning
+behaviors are valid within the audited canonical population,
+but generalization to the uncurated source population remains
+unverified.
+Incomplete onset annotation. 60 of 317 TEST failure
+episodes (18.9%) lack onset annotations. These episodes
+are excluded from onset-dependent Recall@FAR and late-
+detection analysis but remain available for ranking metrics.
+Systematic differences between annotated and unannotated
+episodes may affect reported prospective-warning rates.
+LLM-monitor evaluation. The L (LLM-monitor) model
+was not evaluated because the available hardware (RTX 2050,
+4 GB VRAM) could not support protocol-compliant evaluation
+over the full dataset. No conclusions about L’s prospective
+performance can be drawn.
+Domain scope. Transferability of the protocol and results
+is restricted to the evaluated tool-use coding-task domain.
+Generalization to other agent types or task domains has not
+been established.
+Offline evaluation. AIRE-Trace is an offline evaluator of
+recorded trajectories, not a runtime intervention mechanism.
+Deployment considerations are outside the scope of this work.
+VII. CONCLUSION
+This study evaluated prospective failure warning from
+trajectory-prefix
+information
+under
+an
+explicit
+separa-
+tion
+between
+pre-onset
+prediction
+and
+post-onset
+alert-
+ing, using 636 reconstructed episodes with a task-disjoint
+TRAIN/CALIBRATION/TEST split and frozen calibration
+thresholds.
+Across seven baselines at K=30, Mode A AUROC ranged
+from 0.5074 to 0.6371. Under the 5% FAR constraint, the
+baselines with a defined Recall@FAR achieved zero or near-
+zero prospective recall (H3 was undefined because its cal-
+ibration FAR reached 1.000). Trajectory risk decomposition
+(dyn_comp) achieved Recall@FAR of 0.1167, a statistically
+
+
+==================== PAGE 6 ====================
+
+significant improvement over M1 (∆= +0.1089, 95% CI
+[0.0706, 0.1496], padj = 9.999 × 10−5, B = 10,000 episode-
+cluster bootstrap).
+Feature ablation confirmed that omitting error and retry
+signals produced the largest observed discrimination loss
+(∆AUROC = −0.1069 at A4). PDC of 0.8294 across 21
+informative baseline pairs indicates largely consistent but
+not universal ranking stability. The evaluated trajectory-prefix
+structural features contain limited information about eventual
+task failure, and translating that information into reliable
+early warning under strict operational false-alarm constraints
+remains an open challenge.
+REFERENCES
+[1] X. Liu et al., “AgentBench: Evaluating LLMs as Agents,” in Proc. ICLR,
+2024. arXiv:2308.03688.
+[2] C. Ma et al., “AgentBoard: An Analytical Evaluation Board of Multi-
+turn LLM Agents,” in Proc. NeurIPS, 2024. arXiv:2401.13178.
+[3] G. Mialon et al., “GAIA: A Benchmark for General AI Assistants,” in
+Proc. ICLR, 2024. arXiv:2311.12983.
+[4] D. Deshpande et al., “TRAIL: Trace Reasoning and Agentic Issue
+Localization,” arXiv:2505.08638, 2025.
+[5] S. Barke et al., “AgentRx: Diagnosing AI Agent Failures from Execution
+Trajectories,” arXiv:2602.02475, 2026.
+[6] J. Liu et al., “Who&When Pro: Can LLMs Really Attribute Failures in
+AI Agents?” arXiv:2607.09996, 2026.
+[7] X. Huang et al., “PrefixGuard: From LLM-Agent Traces to Online
+Failure-Warning Monitors,” arXiv:2605.06455, 2026.
+[8] B. Zhang et al., “AgentForesight: Online Auditing for Early Failure
+Prediction in Multi-Agent Systems,” arXiv:2605.08715, 2026.
+[9] L. Advani, “Trajectory Guard: A Lightweight, Sequence-Aware Model
+for Real-Time Anomaly Detection in Agentic AI,” arXiv:2601.00516,
+2026.
+[10] L. Advani, “From Confident Closing to Silent Failure: Characterizing
+False Success in LLM Agents,” arXiv:2606.09863, 2026.
+[11] S. Fan et al., “AgentProcessBench: Diagnosing Step-Level Process
+Quality in Tool-Using Agents,” arXiv:2603.14465, 2026.
+[12] A. C. Cameron, J. B. Gelbach, and D. L. Miller, “Bootstrap-Based Im-
+provements for Inference with Clustered Errors,” Rev. Econ. Stat.,
+vol. 90, no. 3, pp. 414–427, 2008.
+[13] S. Holm, “A Simple Sequentially Rejective Multiple Test Procedure,”
+Scand. J. Stat., vol. 6, no. 2, pp. 65–70, 1979.

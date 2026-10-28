@@ -1,0 +1,161 @@
+=== PARAGRAPHS ===
+[0] Form 2
+[1] The Patents Act, 1970 (39 of 1970)
+[2] &
+[3] The patents rules, 2003
+[4] COMPLETE SPECIFICATION
+[5] (see section 10 and rule 13)
+[8] 1.	TITLE OF THE INVENTION
+[9] System And Method For Prospective Failure Warning In Autonomous Agent Using Trajectory Risk Decomposition
+[10] 2.	APPLICANT
+[12] 3.	PREAMBLE OF THE DESCRIPTION
+[13] The following specifications particularly describe the invention and the manner in which it is be performed
+[19] 1.	Title
+[20] System And Method For Prospective Failure Warning In Autonomous Agent Using Trajectory Risk Decomposition
+[21] 2.	Technical filed of the invention
+[22] The present invention relates to computer-implemented systems and methods for runtime monitoring of autonomous software agents during sequential task execution.
+[23] Particularly, the present invention relates to prospective failure warning based on partially observed execution trajectories of autonomous agents.
+[24] More particularly, the present invention relates to determining trajectory-associated failure risk, determining task-difficulty-associated failure risk, and decomposing the failure risk to identify a trajectory-dependent risk component for generating a prospective warning.
+[25] The advantage of the present invention is to distinguish execution-dependent failure-risk information from failure risk attributable to task difficulty, thereby supporting earlier and more reliable warning decisions.
+[26] The use of the invention is suitable for autonomous agents that execute multi-step tasks through actions, observations, and interactions with software tools or computing environments.
+[27] 3.	Background art including citations of prior art
+[28] One of the prior art numbers, United States Patent No. US12441366B2, titled "Task-relevant failure detection for trajectory prediction in machines", describes a failure detection mechanism associated with trajectory prediction in which predicted trajectory information is evaluated to identify potentially problematic operating outcomes.
+[29] Another prior art no., United States Patent No. US12694133, titled "Autonomous agent observation and control", describes an observation and control architecture for autonomous software agents, including monitoring of agent states and execution of agent actions and providing mechanisms for agent control.
+[30] Yet another prior art no., United States Patent No. US12450494B1, titled "Validating autonomous artificial intelligence (AI) agents using generative AI", describes a validation framework for autonomous artificial intelligence agents in which executed actions are evaluated according to predefined risk or sensitivity considerations for monitoring and policy enforcement.
+[31] Another prior art no., arXiv preprint arXiv:2512.03109, titled "E-valuator: Reliable Agent Verifiers with Sequential Hypothesis Testing", describes sequential monitoring of agent trajectories using intermediate verifier information and statistical decision procedures for making monitoring decisions while controlling false alarms.
+[32] Yet another prior art no., arXiv preprint arXiv:2608.03222, titled "Fail-Fast, Restart-Smart: Early Failure Prediction and Restart for SWE Agentic Tasks", describes early failure prediction for software engineering agents using information from partial execution trajectory prefixes to estimate the likelihood of eventual task failure and support early termination or restart decisions.
+[33] However, the cited prior art addresses trajectory prediction, agent observation and control, action-risk validation, sequential trajectory monitoring, or early failure prediction using respective monitoring or prediction signals. The cited prior art does not describe, in combination, a risk representation that distinguishes failure-risk information associated with an observed agent execution trajectory from failure-risk information associated with task or task-difficulty characteristics for prospective warning determination. Accordingly, there is a need for a computer-implemented approach for prospective monitoring of sequential autonomous-agent execution that can distinguish execution-associated failure-risk information from task-associated failure-risk information while processing information available during execution.
+[34] Therefore, the present invention overcomes the drawbacks of the prior art by providing a method that computes a task-difficulty-conditioned static failure probability and a trajectory-conditioned dynamic failure probability using separately trained predictive models, derives a residual signal from the difference between them, and applies a threshold calibrated on a task-disjoint held-out dataset to said residual signal to generate a prospective, prefix-level failure warning at a controlled false-alarm rate.
+[35] (our proposed idea of invention should not be disclose here, it should highlight of the present invention, should not mention the objects of the proposed invention)
+[37] 4.	Objects of the invention
+[38] The principal object of this invention is to provide a computer-implemented method and system for prospective failure warning in autonomous agents during sequential task execution.
+[39] Another object of this invention is to provide a method for decomposing composite failure risk into a task-difficulty-associated failure risk component and a trajectory-associated failure risk component.
+[40] A further object of this invention is to provide a method for isolating a trajectory-dependent failure risk component from said composite failure risk for generating prospective failure warnings.
+[41] Yet another object of this invention is to provide a method for determining prospective failure warnings based on partially observed execution trajectories of autonomous agents.
+[42] Still another object of this invention is to provide a method for distinguishing execution-dependent failure-risk information from failure risk attributable to task difficulty during autonomous agent monitoring.
+[43] Further object of this invention is to provide a system and method applicable to autonomous agents that execute multi-step tasks through actions, observations, and interactions with software tools or computing environments.
+[45] 5.	Summary of the invention
+[46] The present invention addresses the technical problem of providing prospective failure warnings for autonomous agents during sequential task execution by distinguishing execution-dependent failure risk from task-difficulty-associated failure risk.
+[47] To achieve the objects, the present invention provides the solution comprising a computer-implemented method and system for decomposing composite failure risk into a task-difficulty-associated failure risk component and a trajectory-associated failure risk component, and generating prospective failure warnings based on the trajectory-associated failure risk component.
+[48] According to the basic aspect of the present invention, there is provided a method for prospective failure warning in autonomous agents, comprising receiving information from a partially observed execution trajectory of an autonomous agent, determining a task-difficulty-associated failure risk, determining a trajectory-associated failure risk, decomposing the failure risk to identify a trajectory-dependent risk component, and generating a prospective failure warning based on said trajectory-dependent risk component.
+[49] It is another aspect of the present invention to provide a system comprising one or more processors configured to execute the method for prospective failure warning, wherein the system receives execution telemetry from autonomous agents and outputs prospective failure warnings during agent execution.
+[50] It is one another aspect of the present invention to calibrate a decision threshold for the trajectory-dependent risk component using a calibration dataset to control false-alarm rates in the prospective failure warnings.
+[51] It is another aspect of the present invention that the method operates using only trajectory information available up to a partial execution point of the agent trajectory, without requiring information about the eventual outcome of the trajectory.
+[52] It is one another aspect of the present invention to that the system and method are applicable to autonomous agents executing multi-step tasks through actions, observations, and interactions with software tools or computing environments. The advantages of the present invention include distinguishing execution-dependent failure-risk information from failure risk attributable to task difficulty and enabling prospective warning decisions to be generated from partially observed autonomous-agent execution trajectories while controlling false-alarm behavior.
+[54] 6.	Brief description of the drawings
+[55] Preamble
+[56] The embodiment of the present invention is illustrated with the help of accompanying drawings:
+[57] Fig.1 illustrates a block diagram of a computer-implemented system for prospective failure warning in autonomous agents via trajectory risk decomposition, according to an embodiment of the present invention.
+[58] Fig.2 illustrates a flowchart of a computer-implemented method for prospective failure warning from a partially observed agent trajectory, according to an embodiment of the present invention.
+[59] Fig.3 illustrates a flowchart of a method for decision threshold calibration under a false-alarm rate constraint, according to an embodiment of the present invention.
+[60] Fig.4 illustrates a graphical representation of trajectory-dependent risk decomposition across execution prefixes, comprising failure risk decomposition into static and dynamic components and threshold comparison on the resulting trajectory-dependent residual risk, according to an embodiment of the present invention.
+[62] 7.	Detailed description of the invention with reference to the accompanying drawings.
+[63] The invention is illustrated with the help of the accompanying drawing fig 1 to 4 With reference to fig.1, the present invention provides a computer-implemented prospective failure warning system (100) configured to process partially observed execution trajectories of autonomous agents using trajectory risk decomposition.
+[64] The system (100) receives a partial trajectory input (102) corresponding to an autonomous agent executing a multi-step task up to an intermediate execution checkpoint t, where t represents an execution step within a predetermined processing horizon. The partial trajectory input (102) and associated task information are used to provide task characteristics input (104) and trajectory execution features input (108).
+[65] The task characteristics input (104) represents characteristics associated with the assigned task that are available independently of step-by-step execution dynamics, including task instructions, target environment specifications, prompt characteristics, and available tool definitions. The task characteristics input (104) is processed by a static task-difficulty model (106) configured to estimate a failure probability associated with task characteristics, thereby providing a static failure risk value P_static (112).
+[66] The trajectory execution features input (108) represents execution information observed up to checkpoint t, including information derived from sequential actions, tool interactions, execution events, system responses, errors, repetitions, resource usage, or execution timing. The trajectory execution features input (108) is processed by a dynamic trajectory risk model (110) configured to determine an execution-conditioned failure risk based on the partially observed trajectory, thereby providing a dynamic failure risk value P_dynamic(t) (114).
+[67] The static failure risk value P_static (112) and the dynamic failure risk value P_dynamic(t) (114) are supplied to a risk decomposition module (116). The risk decomposition module (116) computes a trajectory-dependent residual risk value R_t according to:
+[68] R_t = P_dynamic(t) - P_static
+[69] The residual risk value represents the difference between the execution-conditioned failure risk and the failure risk associated with task characteristics. The decomposition thereby provides a trajectory-dependent risk representation for prospective warning determination while distinguishing the task-difficulty-associated component from the execution-conditioned component.
+[70] The computed residual risk value R_t is supplied to a threshold comparison module (118). A calibrated decision threshold storage (120) provides a predetermined decision threshold τ*, which is calibrated using an independent calibration dataset under a predetermined false-alarm rate constraint. The threshold comparison module (118) determines whether the residual risk satisfies the warning condition:
+[71] R_t ≥ τ*
+[72] When the warning condition is satisfied, the threshold comparison module (118) generates a prospective failure warning through the prospective failure warning output (122).
+[73] According to one embodiment of the present invention, as shown in Fig. 2, a computer-implemented method for prospective failure warning is performed across successive partial execution checkpoints of an agent trajectory.
+[74] At step 200, the method receives a partial trajectory representing observed execution events of an autonomous agent up to checkpoint t.
+[75] At step 202, the method determines task characteristics and trajectory execution features available at the corresponding partial execution point without referencing the eventual terminal outcome of the trajectory.
+[76] At step 204, the task characteristics are processed to compute the static failure probability P_static.
+[77] At step 206, the trajectory execution features observed up to checkpoint t are processed to compute the dynamic failure probability P_dynamic(t). Steps 204 and 206 may be performed in parallel or in any order.
+[78] At step 208, the method computes the trajectory-dependent residual risk R_t by subtracting P_static from P_dynamic(t):
+[79] R_t = P_dynamic(t) - P_static
+[80] At step 210, a decision operation determines whether the computed residual risk satisfies the warning threshold criterion by evaluating R_t ≥ τ*, where τ* is the calibrated decision threshold retrieved from threshold storage (120).
+[81] If the residual risk meets or exceeds the threshold, the method proceeds to step 212, wherein a prospective failure warning is generated.
+[82] If the residual risk does not meet the threshold, the method proceeds to step 214, wherein no prospective failure warning is generated at the corresponding checkpoint and processing may continue to a subsequent execution checkpoint t+1.
+[83] According to another embodiment of the present invention, as shown in Fig. 3, the decision threshold τ* is determined through an offline calibration method constrained by a predetermined false-alarm rate.
+[84] At step 300, a calibration trajectory dataset comprising pre-recorded execution episodes of successful and failed tasks is ingested, wherein the calibration data are maintained separately from training and test data.
+[85] At step 302, static failure probabilities and dynamic failure probabilities are computed across partial execution prefixes in the calibration dataset.
+[86] At step 304, residual risk values R_calib are derived for the calibration prefixes by subtracting the respective static failure probability from the dynamic failure probability:
+[87] R_calib = P_dynamic - P_static
+[88] At step 306, the residual risk values are aggregated at episode level by determining a maximum residual risk for each episode according to:
+[89] R_max^(i) = max_t R_t^(i)
+[90] The resulting episode-level residual risk values are considered separately for successful and failed episodes.
+[91] At step 308, a plurality of candidate decision thresholds τ are evaluated across the resulting residual risk distributions.
+[92] At step 310, the false-alarm rate is determined for each candidate threshold using successful calibration episodes, wherein a successful episode contributes a false alarm when its episode-level maximum residual risk satisfies R_max ≥ τ.
+[93] At step 312, a decision threshold τ* is selected to maximize failure recall under a predetermined maximum false-alarm rate constraint.
+[94] At step 314, the selected decision threshold τ* is frozen and stored in threshold storage (120) for subsequent prospective warning generation and downstream evaluation.
+[95] According to yet another embodiment of the present invention, as shown in Fig. 4, the trajectory-dependent risk decomposition is graphically represented across execution prefixes up to a predetermined checkpoint horizon K.
+[96] The horizontal axis (402) represents the sequential execution prefix step t, and the vertical axis (404) represents the failure-risk and residual-risk scale.
+[97] In Panel A, the static task-difficulty failure risk representation (406) corresponds to the static failure risk P_static associated with the task characteristics. The dynamic trajectory failure risk curve (408) represents P_dynamic(t) determined from information available up to successive execution prefixes. The difference between the dynamic failure risk representation (408) and the static failure risk representation (406) represents the trajectory-dependent residual risk (410):
+[98] R_t = P_dynamic(t) - P_static
+[99] In Panel B, the trajectory-dependent residual risk (410) is represented with respect to the calibrated decision threshold (412), corresponding to τ*. A prospective warning trigger point (414) is reached when the residual risk satisfies the warning condition:
+[100] R_t ≥ τ*
+[101] Thus, the graphical representation distinguishes the decomposition of failure risk from the subsequent threshold comparison applied to the resulting trajectory-dependent residual risk.
+[117] 8.	Claim
+[118] We claim:
+[119] A computer-implemented method for prospective failure warning in autonomous agents using trajectory risk decomposition, the method comprising:
+[120] receiving a partial trajectory corresponding to an autonomous agent executing a multi-step task up to an intermediate execution checkpoint t within a predetermined processing horizon;
+[121] obtaining a static failure risk value (P_static) representing failure risk associated with task characteristics of the multi-step task;
+[122] determining a dynamic failure risk value (P_dynamic(t)) representing execution-conditioned failure risk determined from trajectory execution features observed up to the intermediate execution checkpoint t without referencing a terminal outcome of the multi-step task;
+[123] computing, by a processor, a trajectory-dependent residual risk value (R_t) according to:
+R_t = P_dynamic(t) - P_static;
+retrieving a calibrated decision threshold (τ*) from a threshold storage, wherein the calibrated decision threshold is pre-calibrated on an independent calibration trajectory dataset under a predetermined false-alarm rate constraint;
+[124] evaluating the trajectory-dependent residual risk value (R_t) against the calibrated decision threshold (τ*); and
+[125] generating a prospective failure warning when the trajectory-dependent residual risk value satisfies:
+R_t ≥ τ*.
+[126] The method as claimed in claim 1, wherein the task characteristics are available independently of step-by-step execution dynamics of the autonomous agent and comprise one or more of: task instructions, target environment specifications, prompt characteristics, and available tool definitions.
+[127] The method as claimed in claim 1, wherein the trajectory execution features observed up to the intermediate execution checkpoint t comprise one or more of: sequential actions, tool interactions, execution events, system error responses, action repetitions, resource usage metrics, and execution step latency.
+[128] The method as claimed in claim 1, wherein when the trajectory-dependent residual risk value does not satisfy the condition R_t ≥ τ*, no prospective failure warning is generated at intermediate execution checkpoint t, and processing continues to a subsequent execution checkpoint t+1.
+[129] The method as claimed in claim 1, wherein the calibrated decision threshold (τ*) is obtained by:
+[130] determining static failure probabilities and dynamic failure probabilities across a plurality of partial execution prefixes of pre-recorded episodes in the calibration trajectory dataset;
+[131] deriving prefix-level residual risk values by subtracting the respective static failure probability from the dynamic failure probability;
+[132] determining an episode-level maximum residual risk for each pre-recorded episode;
+[133] evaluating candidate decision thresholds across the resulting episode-level maximum residual risks;
+[134] determining a false-alarm rate for each candidate decision threshold across successful episodes in the calibration trajectory dataset;
+[135] selecting the decision threshold (τ*) that maximizes failure recall on the failed episodes in the calibration trajectory dataset subject to satisfying the predetermined false-alarm rate constraint; and
+[136] storing the selected decision threshold (τ*) in the threshold storage for subsequent warning determination.
+[137] The method as claimed in claim 1, wherein prospective failure warning determination is performed at intermediate execution checkpoints using information available up to the respective checkpoint and without referencing an eventual terminal outcome, the checkpoints being limited to a predetermined checkpoint horizon K.
+[138] A computer-implemented system (100) for prospective failure warning in autonomous agents using trajectory risk decomposition, the system comprising:
+[139] one or more processors; and
+[140] a memory communicatively coupled to the one or more processors, the memory storing instructions executable by the one or more processors to configure the system to:
+[141] implement a static task-difficulty model (106) configured to determine a static failure risk value (P_static, 112) associated with task characteristics (104) of a multi-step task;
+[142] implement a dynamic trajectory risk model (110) configured to determine a dynamic failure risk value (P_dynamic(t), 114) conditioned on trajectory execution features (108) observed from a partial trajectory input (102) up to an intermediate execution checkpoint t without referencing a terminal outcome;
+[143] implement a risk decomposition module (116) configured to compute a trajectory-dependent residual risk value (R_t) according to:
+R_t = P_dynamic(t) - P_static;
+[144] access a calibrated decision threshold storage (120) storing a decision threshold (τ*) calibrated under a predetermined false-alarm rate constraint; and
+[145] implement a threshold comparison module (118) configured to evaluate the trajectory-dependent residual risk value (R_t) against the decision threshold (τ*) and generate a prospective failure warning output (122) when R_t ≥ τ*.
+[146] The system as claimed in claim 7, wherein the threshold comparison module (118) generates no prospective failure warning when R_t < τ* and enables processing of a subsequent intermediate execution checkpoint t+1.
+[148] Dated this	day of	2026.
+[152] Signature XXXXXXXXX
+[153] (Name of the Applicant(s)/ Patent Agent)
+[154] 9.	Abstracts
+System And Method For Prospective Failure Warning In Autonomous Agent Using Trajectory Risk Decomposition
+[155] The present invention provides a computer-implemented system (100) and method for prospective failure warning during sequential task execution by autonomous agents. A partial trajectory input (102) provides task characteristics (104) and trajectory execution features (108). A static model (106) determines a task-difficulty failure risk P_static (112), while a dynamic model (110) determines an execution-conditioned failure risk P_dynamic(t) (114) up to checkpoint t without referencing terminal outcomes. A risk decomposition module (116) computes trajectory-dependent residual risk: R_t = P_dynamic(t) - P_static. A threshold comparison module (118) evaluates R_t against a calibrated decision threshold tau* in storage (120), calibrated under a predetermined false-alarm rate constraint. A prospective failure warning (122) is generated when R_t >= tau*. The technical advancement lies in distinguishing task-difficulty-associated failure risk from execution-conditioned failure risk for prospective warning determination. The invention applies to autonomous agents executing multi-step tasks in computing environments.
+[167] 10.	Drawings
+[169] Fig 1: Block diagram of a computer-implemented system for prospective failure warning in autonomous agents via trajectory risk decomposition.
+[171] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[172] KS Rangasamy College Campus,
+[173] KSR Kalvi Nagar, Thokkavadi Village,
+[174] Tiruchengode-Tk, Namakkal-Dt ,
+[175] Tamil Nadu, India,  637 215
+[178] FIG. 2: Flowchart of a computer-implemented method for prospective failure warning from a partially observed agent trajectory
+[179] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[180] KS Rangasamy College Campus,
+[181] KSR Kalvi Nagar, Thokkavadi Village,
+[182] Tiruchengode-Tk, Namakkal-Dt ,
+[183] Tamil Nadu, India,  637 215
+[186] FIG. 3: Flowchart of a method for decision threshold calibration under a false-alarm rate constraint.
+[187] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[188] KS Rangasamy College Campus,
+[189] KSR Kalvi Nagar, Thokkavadi Village,
+[190] Tiruchengode-Tk, Namakkal-Dt ,
+[191] Tamil Nadu, India,  637 215
+[194] FIG. 4: Graphical representation of trajectory-dependent risk decomposition across execution prefixes.
+[195] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[196] KS Rangasamy College Campus,
+[197] KSR Kalvi Nagar, Thokkavadi Village,
+[198] Tiruchengode-Tk, Namakkal-Dt ,
+[199] Tamil Nadu, India,  637 215
+
+=== TABLES ===
+Table 0:
+Name | Nationality | Address
+K.S.Rangasamy College of Technology | Indian | KSR Kalvi Nagar Tiruchngode

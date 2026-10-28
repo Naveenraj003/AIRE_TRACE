@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRE-Trace Demo System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>AIRE-Trace</h1>
+                <div class="evaluation-mode" style="margin-top: 0.5rem;">
+                    <strong>Evaluation mode:</strong> Frozen artifact playback — no live model inference<br>
+                    <small>All displayed predictions and metrics are read from verified frozen artifacts. The interface does not retrain or re-evaluate models.</small>
+                </div>
+            </div>
+            
+            <div class="data-integrity-panel" id="data-integrity-panel">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        <nav id="tabs">
+            <button class="tab-btn active" data-target="overview">Overview</button>
+            <button class="tab-btn" data-target="explorer">Episode Explorer</button>
+            <button class="tab-btn" data-target="comparison">Model Comparison</button>
+            <button class="tab-btn" data-target="alert-inv">Alert Investigation</button>
+            <button class="tab-btn" data-target="late-det">Late Detection</button>
+            <button class="tab-btn" data-target="significance">Significance</button>
+            <button class="tab-btn" data-target="audit">Audit / Provenance</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- View: Overview -->
+        <section id="overview" class="view-panel active">
+            <h2>System Overview</h2>
+            <div id="overview-content" class="grid-container">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- View: Episode Explorer -->
+        <section id="explorer" class="view-panel">
+            <h2>Episode Explorer</h2>
+            <div class="explorer-controls">
+                <div class="selector-group">
+                    <label for="episode-select">Episode:</label>
+                    <select id="episode-select">
+                        <option value="">Select a TEST episode...</option>
+                    </select>
+                </div>
+                <div id="episode-meta" class="meta-box"></div>
+            </div>
+
+            <div class="prefix-controls">
+                <label for="prefix-slider">Prefix Length: <span id="prefix-display">0</span> / 30</label>
+                <input type="range" id="prefix-slider" min="1" max="30" value="1" disabled>
+            </div>
+
+            <div class="main-visualization">
+                <div class="chart-container">
+                    <canvas id="probability-chart"></canvas>
+                </div>
+                <div class="side-panel">
+                    <h3>Context</h3>
+                    <div id="prefix-event-context" class="context-box">
+                        <p class="placeholder-text">Select an episode and move the prefix slider to view context.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-table-container">
+                <h3>Alerts & Thresholds</h3>
+                <table id="alert-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Threshold</th>
+                            <th>First Alert Prefix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="model-progression-container" style="margin-top: 2rem;">
+                <h3>Model Comparison (Prefix Progression)</h3>
+                <table id="progression-table">
+                    <thead>
+                        <tr>
+                            <th>Prefix</th>
+                            <th>H1</th>
+                            <th>H2</th>
+                            <th>H3</th>
+                            <th>H4</th>
+                            <th>M1</th>
+                            <th>S1</th>
+                            <th>DynComp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- View: Model Comparison -->
+        <section id="comparison" class="view-panel">
+            <h2>Model Comparison (TerminalBench)</h2>
+            <table id="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>AUROC</th>
+                        <th>AUPRC</th>
+                        <th>Brier</th>
+                        <th>ECE</th>
+                        <th>FAR</th>
+                        <th>Recall@FAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- View: Alert Investigation -->
+        <section id="alert-inv" class="view-panel">
+            <h2>Alert Investigation</h2>
+            <div style="margin-bottom: 1rem;">
+                <label for="alert-model-select">Select Model: </label>
+                <select id="alert-model-select">
+                    <option value="">Choose a model...</option>
+                    <option value="H1">H1</option>
+                    <option value="H2">H2</option>
+                    <option value="H3">H3</option>
+                    <option value="H4">H4</option>
+                    <option value="M1">M1</option>
+                    <option value="S1">S1</option>
+                    <option value="dyn_comp">DynComp</option>
+                </select>
+            </div>
+            
+            <div id="alert-stats" class="grid-container" style="margin-bottom: 2rem; display: none;">
+                <div class="stat-card"><h3>Alerted Episodes</h3><div class="value" id="alert-total"></div></div>
+                <div class="stat-card"><h3>No Alert</h3><div class="value" id="alert-none"></div></div>
+                <div class="stat-card"><h3>Early Alerts</h3><div class="value" id="alert-early"></div></div>
+                <div class="stat-card"><h3>Late Alerts</h3><div class="value" id="alert-late"></div></div>
+                <div class="stat-card"><h3>Other (Not Early/Late)</h3><div class="value" id="alert-other"></div></div>
+            </div>
+            
+            <div id="alert-list-container" style="display: none;">
+                <h3>Affected Episodes</h3>
+                <table id="alert-list-table">
+                    <thead>
+                        <tr>
+                            <th>Episode ID</th>
+                            <th>First Alert Prefix</th>
+                            <th>Timing (Gate 6 defined)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- View: Late Detection Investigation -->
+        <section id="late-det" class="view-panel">
+            <h2>Late Detection Investigation</h2>
+            <table id="late-det-table" style="margin-bottom: 2rem;">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Late Alerts</th>
+                        <th>% of Valid Failures (Only Late)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+            
+            <div id="late-episodes-container" style="display: none;">
+                <h3 id="late-episodes-title">Episodes (Only Late)</h3>
+                <ul id="late-episodes-list" class="episode-list">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- View: Significance -->
+        <section id="significance" class="view-panel">
+            <h2>Significance & Contribution</h2>
+            <div id="significance-content" class="grid-container">
+                <div class="stat-card" style="grid-column: span 2;">
+                    <h3>DynComp vs M1 (\u0394 Recall@FAR)</h3>
+                    <div class="value" id="sig-delta"></div>
+                    <div style="font-size: 0.9em; margin-top: 5px;">95% CI: <span id="sig-ci"></span></div>
+                    <div style="font-size: 0.9em;">Adjusted p-value: <span id="sig-p"></span></div>
+                </div>
+                <div class="stat-card" style="grid-column: span 2;">
+                    <h3>Prediction Directionality Consistency (PDC)</h3>
+                    <div class="value" id="sig-pdc"></div>
+                    <div style="font-size: 0.9em; margin-top: 5px;">Coverage: <span id="sig-pdc-cov"></span></div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h3>Significance Context</h3>
+                <p>DynComp threshold: <span id="sig-dyn-thresh"></span></p>
+                <p>M1 threshold: <span id="sig-m1-thresh"></span></p>
+                <p>Note: P-value is adjusted for multiple comparisons. Thresholds are frozen and not fitted to TEST.</p>
+            </div>
+        </section>
+
+        <!-- View: Audit / Provenance -->
+        <section id="audit" class="view-panel">
+            <h2>Audit & Provenance</h2>
+            <div id="audit-content" class="audit-box">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

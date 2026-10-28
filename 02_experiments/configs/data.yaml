@@ -1,0 +1,27 @@
+# AIRE-Trace Data & Experimental Preprocessing Configuration
+
+seed: 42
+max_horizon_k: 30
+sensitivity_horizons: [10, 20, 30]
+
+datasets:
+  terminalbench:
+    id: "terminalbench"
+    role: "primary_benchmark"
+    hf_repo: "Contextbench/Tracebench"
+    split: "full"
+    commit_sha: "7da2e4f45b330be8b6e8f1cff835247723cb3341"
+    task_group_split:
+      train_task_count: 53
+      calib_task_count: 18
+      test_task_count: 18
+
+  tau2_bench:
+    id: "tau2"
+    role: "secondary_transfer_diagnostic"
+    local_path: "data/tau-bench/historical_trajectories"
+    source_git_repo: "https://github.com/sierra-research/tau-bench"
+
+output_paths:
+  manifest_dir: "data/processed/manifests"
+  reports_dir: "reports"

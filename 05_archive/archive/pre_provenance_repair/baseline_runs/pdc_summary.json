@@ -1,0 +1,344 @@
+{
+  "overall_pdc": 0.8175,
+  "overall_pdc_coverage": 0.8214,
+  "total_pairs": 21,
+  "informative_pairs": 21,
+  "pairwise_details": [
+    {
+      "pair": "H1 vs H2",
+      "method_a": "H1",
+      "method_b": "H2",
+      "wins": 3,
+      "losses": 0,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "WIN (A > B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "WIN (A > B)"
+      }
+    },
+    {
+      "pair": "H1 vs H3",
+      "method_a": "H1",
+      "method_b": "H3",
+      "wins": 1,
+      "losses": 3,
+      "ties": 0,
+      "pdc": 0.75,
+      "coverage": 1.0,
+      "metric_comparisons": {
+        "AUROC": "WIN (A > B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "LOSS (A < B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H1 vs H4",
+      "method_a": "H1",
+      "method_b": "H4",
+      "wins": 2,
+      "losses": 1,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "WIN (A > B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H1 vs M1",
+      "method_a": "H1",
+      "method_b": "M1",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H1 vs S1",
+      "method_a": "H1",
+      "method_b": "S1",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H1 vs S2",
+      "method_a": "H1",
+      "method_b": "S2",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H2 vs H3",
+      "method_a": "H2",
+      "method_b": "H3",
+      "wins": 1,
+      "losses": 3,
+      "ties": 0,
+      "pdc": 0.75,
+      "coverage": 1.0,
+      "metric_comparisons": {
+        "AUROC": "WIN (A > B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "LOSS (A < B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H2 vs H4",
+      "method_a": "H2",
+      "method_b": "H4",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H2 vs M1",
+      "method_a": "H2",
+      "method_b": "M1",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H2 vs S1",
+      "method_a": "H2",
+      "method_b": "S1",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H2 vs S2",
+      "method_a": "H2",
+      "method_b": "S2",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H3 vs H4",
+      "method_a": "H3",
+      "method_b": "H4",
+      "wins": 1,
+      "losses": 3,
+      "ties": 0,
+      "pdc": 0.75,
+      "coverage": 1.0,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "LOSS (A < B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H3 vs M1",
+      "method_a": "H3",
+      "method_b": "M1",
+      "wins": 1,
+      "losses": 3,
+      "ties": 0,
+      "pdc": 0.75,
+      "coverage": 1.0,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "LOSS (A < B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H3 vs S1",
+      "method_a": "H3",
+      "method_b": "S1",
+      "wins": 1,
+      "losses": 3,
+      "ties": 0,
+      "pdc": 0.75,
+      "coverage": 1.0,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "LOSS (A < B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H3 vs S2",
+      "method_a": "H3",
+      "method_b": "S2",
+      "wins": 1,
+      "losses": 3,
+      "ties": 0,
+      "pdc": 0.75,
+      "coverage": 1.0,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "WIN (A > B)",
+        "Recall_at_FAR": "LOSS (A < B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H4 vs M1",
+      "method_a": "H4",
+      "method_b": "M1",
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "pdc": 1.0,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "LOSS (A < B)"
+      }
+    },
+    {
+      "pair": "H4 vs S1",
+      "method_a": "H4",
+      "method_b": "S1",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "WIN (A > B)"
+      }
+    },
+    {
+      "pair": "H4 vs S2",
+      "method_a": "H4",
+      "method_b": "S2",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "WIN (A > B)"
+      }
+    },
+    {
+      "pair": "M1 vs S1",
+      "method_a": "M1",
+      "method_b": "S1",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "WIN (A > B)"
+      }
+    },
+    {
+      "pair": "M1 vs S2",
+      "method_a": "M1",
+      "method_b": "S2",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "WIN (A > B)"
+      }
+    },
+    {
+      "pair": "S1 vs S2",
+      "method_a": "S1",
+      "method_b": "S2",
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "pdc": 0.6667,
+      "coverage": 0.75,
+      "metric_comparisons": {
+        "AUROC": "LOSS (A < B)",
+        "AUPRC": "LOSS (A < B)",
+        "Recall_at_FAR": "TIE (A == B)",
+        "ECE": "WIN (A > B)"
+      }
+    }
+  ]
+}

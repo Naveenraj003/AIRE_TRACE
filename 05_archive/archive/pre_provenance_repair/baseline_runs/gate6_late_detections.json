@@ -1,0 +1,90 @@
+{
+  "horizon_k": 30,
+  "target_far": 0.05,
+  "late_detections": {
+    "H1": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.74
+    },
+    "H2": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.53
+    },
+    "H3": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.01
+    },
+    "H4": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.99
+    },
+    "M1": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.98
+    },
+    "S1": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.92
+    },
+    "S2": {
+      "total_late_alerts": 0,
+      "unique_late_alert_episodes": 0,
+      "total_valid_fail_episodes": 0,
+      "only_late_alert_episodes": 0,
+      "pct_failed_episodes_with_only_late_alerts": 0.0,
+      "lateness_min": null,
+      "lateness_max": null,
+      "lateness_mean": null,
+      "lateness_median": null,
+      "frozen_threshold": 0.95
+    }
+  }
+}

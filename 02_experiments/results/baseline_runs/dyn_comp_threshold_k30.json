@@ -1,0 +1,11 @@
+{
+  "dyn_comp_frozen_threshold": 0.552167546011228,
+  "dyn_comp_calibration_far": 0.0,
+  "dyn_comp_calibration_recall": 0.02631578947368421,
+  "m1_frozen_threshold": 0.98,
+  "m1_calibration_far": 0.0,
+  "m1_calibration_recall": 0.0,
+  "horizon_k": 30,
+  "target_far": 0.05,
+  "note": "Threshold selected from CALIBRATION split only. No TEST data used."
+}

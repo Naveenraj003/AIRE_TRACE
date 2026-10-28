@@ -1,0 +1,26 @@
+=== PARAGRAPHS ===
+[0] 10. Drawings
+[2] Fig 1: Block diagram of a computer-implemented system for prospective failure warning in autonomous agents via trajectory risk decomposition.
+[3] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[4] KS Rangasamy College Campus,
+[5] KSR Kalvi Nagar, Thokkavadi Village,
+[6] Tiruchengode-Tk, Namakkal-Dt ,
+[7] Tamil Nadu, India,  637 215.
+[9] Fig 2: Flowchart of a computer-implemented method for prospective failure warning from a partially observed agent trajectory.
+[10] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[11] KS Rangasamy College Campus,
+[12] KSR Kalvi Nagar, Thokkavadi Village,
+[13] Tiruchengode-Tk, Namakkal-Dt ,
+[14] Tamil Nadu, India,  637 215.
+[16] Fig 3: Flowchart of a method for decision threshold calibration under a false-alarm rate constraint.
+[17] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[18] KS Rangasamy College Campus,
+[19] KSR Kalvi Nagar, Thokkavadi Village,
+[20] Tiruchengode-Tk, Namakkal-Dt ,
+[21] Tamil Nadu, India,  637 215.
+[23] Fig 4: Graphical representation of trajectory-dependent risk decomposition across execution prefixes.
+[24] (K.S.RANGASAMY COLLEGE OF TECHNOLOGY)
+[25] KS Rangasamy College Campus,
+[26] KSR Kalvi Nagar, Thokkavadi Village,
+[27] Tiruchengode-Tk, Namakkal-Dt ,
+[28] Tamil Nadu, India,  637 215.

@@ -1,0 +1,526 @@
+[
+  {
+    "ablation_id": "A0",
+    "description": "Full baseline",
+    "retained_features": [
+      "feat_steps_so_far",
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system",
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result",
+      "feat_tool_error_count",
+      "feat_retry_count",
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio",
+      "feat_repeated_action_last2"
+    ],
+    "removed_features": [],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.97,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0263,
+    "TEST_AUROC": 0.6371,
+    "TEST_AUPRC": 0.8452,
+    "TEST_Recall_at_FAR": 0.0,
+    "TEST_FAR": 0.0404,
+    "Brier": 0.1746,
+    "ECE": 0.0124,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.6357,
+        "ci_lower": 0.5885,
+        "ci_upper": 0.6745
+      },
+      "AUPRC": {
+        "mean": 0.8419,
+        "ci_lower": 0.802,
+        "ci_upper": 0.8761
+      },
+      "FAR": {
+        "mean": 0.0403,
+        "ci_lower": 0.0101,
+        "ci_upper": 0.076
+      },
+      "Brier": {
+        "mean": 0.1767,
+        "ci_lower": 0.1555,
+        "ci_upper": 0.1941
+      },
+      "ECE": {
+        "mean": 0.0262,
+        "ci_lower": 0.0081,
+        "ci_upper": 0.0513
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  },
+  {
+    "ablation_id": "A1",
+    "description": "No progression",
+    "retained_features": [
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system",
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result",
+      "feat_tool_error_count",
+      "feat_retry_count",
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio",
+      "feat_repeated_action_last2"
+    ],
+    "removed_features": [
+      "feat_steps_so_far"
+    ],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.98,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0263,
+    "TEST_AUROC": 0.6357,
+    "TEST_AUPRC": 0.845,
+    "TEST_Recall_at_FAR": 0.0,
+    "TEST_FAR": 0.0404,
+    "Brier": 0.1749,
+    "ECE": 0.018,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.6344,
+        "ci_lower": 0.5858,
+        "ci_upper": 0.6738
+      },
+      "AUPRC": {
+        "mean": 0.8417,
+        "ci_lower": 0.801,
+        "ci_upper": 0.8764
+      },
+      "FAR": {
+        "mean": 0.0403,
+        "ci_lower": 0.0101,
+        "ci_upper": 0.076
+      },
+      "Brier": {
+        "mean": 0.1769,
+        "ci_lower": 0.1559,
+        "ci_upper": 0.1943
+      },
+      "ECE": {
+        "mean": 0.0286,
+        "ci_lower": 0.0089,
+        "ci_upper": 0.0525
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  },
+  {
+    "ablation_id": "A2",
+    "description": "No actor-role composition",
+    "retained_features": [
+      "feat_steps_so_far",
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result",
+      "feat_tool_error_count",
+      "feat_retry_count",
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio",
+      "feat_repeated_action_last2"
+    ],
+    "removed_features": [
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system"
+    ],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.99,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0,
+    "TEST_AUROC": 0.6335,
+    "TEST_AUPRC": 0.8422,
+    "TEST_Recall_at_FAR": 0.0,
+    "TEST_FAR": 0.0,
+    "Brier": 0.1753,
+    "ECE": 0.0214,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.6322,
+        "ci_lower": 0.5841,
+        "ci_upper": 0.6708
+      },
+      "AUPRC": {
+        "mean": 0.8389,
+        "ci_lower": 0.7995,
+        "ci_upper": 0.8739
+      },
+      "FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      },
+      "Brier": {
+        "mean": 0.1774,
+        "ci_lower": 0.1566,
+        "ci_upper": 0.1949
+      },
+      "ECE": {
+        "mean": 0.0308,
+        "ci_lower": 0.0123,
+        "ci_upper": 0.0531
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  },
+  {
+    "ablation_id": "A3",
+    "description": "No action-type composition",
+    "retained_features": [
+      "feat_steps_so_far",
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system",
+      "feat_tool_error_count",
+      "feat_retry_count",
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio",
+      "feat_repeated_action_last2"
+    ],
+    "removed_features": [
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result"
+    ],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.99,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0,
+    "TEST_AUROC": 0.6383,
+    "TEST_AUPRC": 0.8477,
+    "TEST_Recall_at_FAR": 0.0,
+    "TEST_FAR": 0.0,
+    "Brier": 0.1744,
+    "ECE": 0.0141,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.6374,
+        "ci_lower": 0.5898,
+        "ci_upper": 0.6734
+      },
+      "AUPRC": {
+        "mean": 0.8448,
+        "ci_lower": 0.8056,
+        "ci_upper": 0.8789
+      },
+      "FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      },
+      "Brier": {
+        "mean": 0.1764,
+        "ci_lower": 0.1557,
+        "ci_upper": 0.1938
+      },
+      "ECE": {
+        "mean": 0.0281,
+        "ci_lower": 0.0092,
+        "ci_upper": 0.054
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  },
+  {
+    "ablation_id": "A4",
+    "description": "No error/retry signals",
+    "retained_features": [
+      "feat_steps_so_far",
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system",
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result",
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio",
+      "feat_repeated_action_last2"
+    ],
+    "removed_features": [
+      "feat_tool_error_count",
+      "feat_retry_count"
+    ],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.88,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0526,
+    "TEST_AUROC": 0.5302,
+    "TEST_AUPRC": 0.782,
+    "TEST_Recall_at_FAR": 0.0156,
+    "TEST_FAR": 0.0404,
+    "Brier": 0.1816,
+    "ECE": 0.0052,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.5298,
+        "ci_lower": 0.5068,
+        "ci_upper": 0.5551
+      },
+      "AUPRC": {
+        "mean": 0.7782,
+        "ci_lower": 0.7381,
+        "ci_upper": 0.8228
+      },
+      "FAR": {
+        "mean": 0.0407,
+        "ci_lower": 0.0101,
+        "ci_upper": 0.0861
+      },
+      "Brier": {
+        "mean": 0.1836,
+        "ci_lower": 0.1594,
+        "ci_upper": 0.2036
+      },
+      "ECE": {
+        "mean": 0.0198,
+        "ci_lower": 0.0049,
+        "ci_upper": 0.0528
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0147,
+        "ci_lower": 0.0018,
+        "ci_upper": 0.0293
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  },
+  {
+    "ablation_id": "A5",
+    "description": "No tool-usage statistics",
+    "retained_features": [
+      "feat_steps_so_far",
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system",
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result",
+      "feat_tool_error_count",
+      "feat_retry_count",
+      "feat_repeated_action_last2"
+    ],
+    "removed_features": [
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio"
+    ],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.99,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0,
+    "TEST_AUROC": 0.636,
+    "TEST_AUPRC": 0.8479,
+    "TEST_Recall_at_FAR": 0.0,
+    "TEST_FAR": 0.0,
+    "Brier": 0.1748,
+    "ECE": 0.017,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.6348,
+        "ci_lower": 0.5871,
+        "ci_upper": 0.6737
+      },
+      "AUPRC": {
+        "mean": 0.8448,
+        "ci_lower": 0.8066,
+        "ci_upper": 0.8781
+      },
+      "FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      },
+      "Brier": {
+        "mean": 0.1768,
+        "ci_lower": 0.1558,
+        "ci_upper": 0.1943
+      },
+      "ECE": {
+        "mean": 0.0287,
+        "ci_lower": 0.0091,
+        "ci_upper": 0.0532
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  },
+  {
+    "ablation_id": "A6",
+    "description": "No immediate repetition signal",
+    "retained_features": [
+      "feat_steps_so_far",
+      "feat_actor_role_agent",
+      "feat_actor_role_tool",
+      "feat_actor_role_user",
+      "feat_actor_role_system",
+      "feat_action_type_message",
+      "feat_action_type_tool_call",
+      "feat_action_type_tool_result",
+      "feat_tool_error_count",
+      "feat_retry_count",
+      "feat_unique_tools_used",
+      "feat_tool_call_ratio"
+    ],
+    "removed_features": [
+      "feat_repeated_action_last2"
+    ],
+    "seed": 42,
+    "train_episodes": 163,
+    "calibration_episodes": 57,
+    "test_episodes": 416,
+    "calibration_threshold": 0.98,
+    "calibration_FAR": 0.0,
+    "calibration_Recall": 0.0,
+    "TEST_AUROC": 0.6341,
+    "TEST_AUPRC": 0.8462,
+    "TEST_Recall_at_FAR": 0.0156,
+    "TEST_FAR": 0.0,
+    "Brier": 0.1751,
+    "ECE": 0.0182,
+    "bootstrap_CIs": {
+      "AUROC": {
+        "mean": 0.6328,
+        "ci_lower": 0.5851,
+        "ci_upper": 0.672
+      },
+      "AUPRC": {
+        "mean": 0.8429,
+        "ci_lower": 0.8043,
+        "ci_upper": 0.8769
+      },
+      "FAR": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      },
+      "Brier": {
+        "mean": 0.1771,
+        "ci_lower": 0.1561,
+        "ci_upper": 0.1947
+      },
+      "ECE": {
+        "mean": 0.0291,
+        "ci_lower": 0.0104,
+        "ci_upper": 0.0524
+      },
+      "Recall_at_FAR": {
+        "mean": 0.0155,
+        "ci_lower": 0.0039,
+        "ci_upper": 0.0332
+      }
+    },
+    "exclusion_counts": {
+      "Total_Failures": 317,
+      "Valid_Episodes": 257,
+      "Unannotated_Episodes": 60,
+      "Malformed_Episodes": 0,
+      "Excluded_Episodes": 60
+    },
+    "dataset": "TerminalBench (Mode A)",
+    "disclaimer": "This is a Gate 7 ablation and does not replace the frozen primary S1 result."
+  }
+]

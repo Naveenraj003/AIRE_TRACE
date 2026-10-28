@@ -1,0 +1,48 @@
+<svg width="700" height="350" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="white"/>
+    <g font-family="sans-serif" font-size="14">
+        <!-- Time Axis -->
+        <line x1="50" y1="150" x2="650" y2="150" stroke="black" stroke-width="3" marker-end="url(#arrow)"/>
+        <text x="650" y="170" text-anchor="end">Time (steps)</text>
+        
+        <!-- Events -->
+        <circle cx="100" cy="150" r="5" fill="black"/>
+        <circle cx="150" cy="150" r="5" fill="black"/>
+        <circle cx="200" cy="150" r="5" fill="black"/>
+        <circle cx="250" cy="150" r="5" fill="black"/>
+        
+        <text x="250" y="130" text-anchor="middle" fill="#0288d1">Checkpoint t</text>
+        <line x1="250" y1="135" x2="250" y2="165" stroke="#0288d1" stroke-width="2" stroke-dasharray="4,4"/>
+        
+        <!-- Future events masked -->
+        <rect x="250" y="120" width="380" height="60" fill="gray" opacity="0.2"/>
+        <text x="440" y="145" text-anchor="middle" font-style="italic">Future Events Unavailable</text>
+        
+        <!-- Failure Onset -->
+        <line x1="450" y1="110" x2="450" y2="190" stroke="red" stroke-width="3"/>
+        <text x="450" y="100" text-anchor="middle" fill="red" font-weight="bold">Failure Onset</text>
+        
+        <!-- Box for Prospective evaluation -->
+        <rect x="80" y="200" width="200" height="80" fill="#e1f5fe" stroke="#0288d1" stroke-width="2"/>
+        <text x="180" y="225" text-anchor="middle" font-weight="bold">Prospective Alert</text>
+        <text x="180" y="245" text-anchor="middle" font-size="12">Alert &lt;= Onset</text>
+        <text x="180" y="265" text-anchor="middle" font-size="12">(Valid Early Warning)</text>
+        <path d="M 250 170 L 180 200" stroke="#0288d1" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- Box for Late detection -->
+        <rect x="420" y="200" width="200" height="80" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+        <text x="520" y="225" text-anchor="middle" font-weight="bold">Late Detection</text>
+        <text x="520" y="245" text-anchor="middle" font-size="12">Alert &gt; Onset</text>
+        <text x="520" y="265" text-anchor="middle" font-size="12">(Post-failure Diagnosis)</text>
+        <path d="M 520 170 L 520 200" stroke="#d32f2f" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow)"/>
+        
+        <!-- Prefix span -->
+        <path d="M 100 170 Q 175 190 250 170" stroke="black" stroke-width="1.5" fill="none"/>
+        <text x="175" y="195" text-anchor="middle" font-size="12">Prefix</text>
+    </g>
+    <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="black"/>
+        </marker>
+    </defs>
+    </svg>

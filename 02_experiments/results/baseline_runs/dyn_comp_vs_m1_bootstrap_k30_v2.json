@@ -1,0 +1,67 @@
+{
+  "comparison": "dyn_comp vs M1",
+  "metric": "Recall_at_FAR",
+  "mode": "prospective",
+  "population": "416 TEST episodes (full, unfiltered)",
+  "n_test_episodes": 416,
+  "n_success_episodes": 99,
+  "n_valid_failure_episodes": 257,
+  "n_prefixes": 8878,
+  "horizon_k": 30,
+  "B": 1000,
+  "random_seed": 42,
+  "m1_frozen_threshold": 0.98,
+  "m1_threshold_source": "results/baseline_runs/calibrated_thresholds.json",
+  "dyn_comp_frozen_threshold": 0.552167546011228,
+  "dyn_comp_threshold_source": "results/baseline_runs/dyn_comp_threshold_k30.json",
+  "obs_m1_recall": 0.0078,
+  "obs_m1_far": 0.0303,
+  "obs_dyn_recall": 0.1167,
+  "obs_dyn_far": 0.0404,
+  "obs_diff_dyn_minus_m1": 0.1089,
+  "bootstrap_mean_diff": 0.1094,
+  "ci_lower_95": 0.0714,
+  "ci_upper_95": 0.153,
+  "p_raw": 0.000999000999000999,
+  "p_adj": 0.000999000999000999,
+  "alpha": 0.05,
+  "reject_H0": true,
+  "diagnostics": {
+    "m1_bootstrap_far_mean": 0.0304,
+    "m1_bootstrap_far_ci_95": [
+      0.0,
+      0.0686
+    ],
+    "dyn_comp_bootstrap_far_mean": 0.0401,
+    "dyn_comp_bootstrap_far_ci_95": [
+      0.0093,
+      0.0804
+    ],
+    "m1_bootstrap_fars_first10": [
+      0.0354,
+      0.0105,
+      0.0316,
+      0.022,
+      0.0179,
+      0.0,
+      0.0345,
+      0.0094,
+      0.0412,
+      0.0215
+    ],
+    "dyn_comp_bootstrap_fars_first10": [
+      0.0708,
+      0.0526,
+      0.0421,
+      0.011,
+      0.0089,
+      0.0762,
+      0.0115,
+      0.0472,
+      0.0515,
+      0.0538
+    ]
+  },
+  "methodology": "Canonical compute_paired_bootstrap_test with joint episode-cluster resampling and null-centered p-value formula.",
+  "status": "AUTHORITATIVE"
+}

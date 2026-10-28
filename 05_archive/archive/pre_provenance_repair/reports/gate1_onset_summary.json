@@ -1,0 +1,42 @@
+{
+  "failed_count": 1903,
+  "failed_with_onset": 1273,
+  "onset_step_stats": {
+    "min": 1,
+    "median": 11.0,
+    "mean": 18.501963864886097,
+    "max": 309
+  },
+  "onset_horizon_breakdown": {
+    "K_10": {
+      "onsets_le_K": 621,
+      "onsets_le_K_pct": 48.78240377062058,
+      "onsets_gt_K": 652,
+      "onsets_gt_K_pct": 51.21759622937942
+    },
+    "K_20": {
+      "onsets_le_K": 916,
+      "onsets_le_K_pct": 71.95600942655145,
+      "onsets_gt_K": 357,
+      "onsets_gt_K_pct": 28.043990573448546
+    },
+    "K_30": {
+      "onsets_le_K": 1056,
+      "onsets_le_K_pct": 82.95365278868813,
+      "onsets_gt_K": 217,
+      "onsets_gt_K_pct": 17.04634721131186
+    },
+    "K_40": {
+      "onsets_le_K": 1138,
+      "onsets_le_K_pct": 89.39512961508248,
+      "onsets_gt_K": 135,
+      "onsets_gt_K_pct": 10.604870384917518
+    },
+    "K_50": {
+      "onsets_le_K": 1185,
+      "onsets_le_K_pct": 93.08719560094265,
+      "onsets_gt_K": 88,
+      "onsets_gt_K_pct": 6.912804399057344
+    }
+  }
+}

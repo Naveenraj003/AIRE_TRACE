@@ -1,0 +1,19 @@
+# Heuristic Monitors Configuration (H1, H2, H3, H4)
+
+models:
+  H1:
+    type: "heuristic"
+    name: "Tool Error Count Threshold"
+    target_feature: "feat_tool_error_count"
+  H2:
+    type: "heuristic"
+    name: "Retry Count Threshold"
+    target_feature: "feat_retry_count"
+  H3:
+    type: "heuristic"
+    name: "Repeated Action Threshold"
+    target_feature: "feat_repeated_action_last2"
+  H4:
+    type: "heuristic_combined"
+    name: "Combined Heuristic Score"
+    components: ["feat_tool_error_count", "feat_retry_count", "feat_repeated_action_last2"]

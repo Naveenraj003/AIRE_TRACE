@@ -1,0 +1,23 @@
+{
+  "terminalbench": {
+    "episodes": 52104,
+    "prefixes": 673549,
+    "train_episodes": 31016,
+    "calib_episodes": 10516,
+    "test_episodes": 10572,
+    "tasks": 52104,
+    "commit_sha": "04e8940f5b6736a7ce8d22224fe2f2af74163ed2",
+    "file": "data/processed/manifests\\terminalbench_prefixes.parquet"
+  },
+  "tracebench": {
+    "episodes": 3316,
+    "prefixes": 80889,
+    "commit_sha": "7da2e4f45b330be8b6e8f1cff835247723cb3341",
+    "file": "data/processed/manifests\\tracebench_prefixes.parquet"
+  },
+  "tau2": {
+    "episodes": 1980,
+    "prefixes": 50424,
+    "file": "data/processed/manifests\\tau2_prefixes.parquet"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "traj_id": "miniswe-Anthropic__Claude-Sonnet-4-20250514-Thinking-audio-synth-stft-peaks-c05fb8b4",
+  "agent": "mini-SWE-agent",
+  "model": "Anthropic/Claude-Sonnet-4-20250514-Thinking",
+  "task_name": "audio-synth-stft-peaks",
+  "task_slug": "audio-synth-stft-peaks-c05fb8b4",
+  "difficulty": "medium",
+  "category": "scientific-computing",
+  "tags": [
+    "audio-processing",
+    "signal-processing",
+    "scipy",
+    "cli-tools"
+  ],
+  "solved": false,
+  "step_count": 18,
+  "stages": [
+    {
+      "end_step_id": 3,
+      "stage_id": 1,
+      "start_step_id": 1
+    },
+    {
+      "end_step_id": 7,
+      "stage_id": 2,
+      "start_step_id": 4
+    },
+    {
+      "end_step_id": 9,
+      "stage_id": 3,
+      "start_step_id": 8
+    },
+    {
+      "end_step_id": 13,
+      "stage_id": 4,
+      "start_step_id": 10
+    },
+    {
+      "end_step_id": 18,
+      "stage_id": 5,
+      "start_step_id": 14
+    }
+  ],
+  "stage_count": 5,
+  "incorrect_error_stage_count": 1,
+  "trial_name": "audio-synth-stft-peaks.1-of-1.claude-sonnet-4-20250514-thinking",
+  "source_relpath": "miniswe/Anthropic__Claude-Sonnet-4-20250514-Thinking/miniswe-claude/audio-synth-stft-peaks/audio-synth-stft-peaks.1-of-1.claude-sonnet-4-20250514-thinking",
+  "incorrect_stages": [
+    {
+      "incorrect_step_ids": [
+        4,
+        7
+      ],
+      "stage_id": 2,
+      "steps": [
+        {
+          "action_ref": null,
+          "labels": [
+            "incorrect"
+          ],
+          "observation_ref": null,
+          "step_id": 4
+        },
+        {
+          "action_ref": null,
+          "labels": [
+            "incorrect"
+          ],
+          "observation_ref": null,
+          "step_id": 7
+        }
+      ],
+      "unuseful_step_ids": []
+    }
+  ],
+  "generated_at": "2026-03-05T00:31:36+00:00",
+  "artifact_path": "bench_artifacts/full/miniswe-Anthropic__Claude-Sonnet-4-20250514-Thinking-audio-synth-stft-peaks-c05fb8b4.tar.zst"
+}

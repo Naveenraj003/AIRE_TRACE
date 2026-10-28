@@ -1,0 +1,16 @@
+# AIRE-Trace Phase-I Review: Literature Review
+
+This table establishes the existing research landscape and explicitly identifies the gap addressed by the AIRE-Trace framework. All cited works correspond to the established project bibliography.
+
+| S.No. | Reference / Authors | Year | Problem / Domain | Method / Approach | Key Contribution | Limitation / Gap Relevant to AIRE-Trace |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| 1 | X. Liu et al., "AgentBench: Evaluating LLMs as Agents" [1] | 2024 | Agent Capability Benchmarking | Outcome-based assessment | Comprehensive benchmark for evaluating final task success/failure across environments. | Treats execution as a black box; evaluates only end-of-trajectory outcomes; provides zero visibility for intermediate multi-step runs. |
+| 2 | D. Deshpande et al., "TRAIL: Trace Reasoning and Agentic Issue Localization" [6] | 2025 | Agentic Issue Localization | Retrospective Trace Reasoning | Introduces a formal taxonomy of agentic error types via human-annotated traces. | Performs post-hoc root-cause attribution on completed trajectories; strictly retrospective and inapplicable to real-time safeguarding or prospective early warning. |
+| 3 | S. Barke et al., "AgentRx: Diagnosing AI Agent Failures from Execution Trajectories" [7] | 2026 | Diagnosing AI Agent Failures | Execution Dependency Graphs | Diagnoses and localizes faulty actions post-hoc. | Retrospective evaluation; inherently requires the completed trace and post-onset information to identify failures, conflating symptoms with early warning. |
+| 4 | X. Huang et al., "PrefixGuard: From LLM-Agent Traces to Online Failure-Warning Monitors" [10] | 2026 | Online Failure-Warning Monitors | Prefix-based risk scoring | Pioneers step-level anomaly detection using LLM-agent traces for real-time monitoring. | Evaluates using unthresholded discrimination metrics (AUROC/AUPRC) that mask operational unviability; lacks formal failure-onset boundaries. |
+| 5 | B. Zhang et al., "AgentForesight: Online Auditing for Early Failure Prediction" [11] | 2026 | Early Failure Prediction | Online Auditing via RL | Proposes an online auditing framework for early failure prediction. | Lacks standardized prospective evaluation; pools post-onset symptoms with genuine early warning; offers no explicit false-alarm-rate (FAR) control. |
+| 6 | L. Advani, "Trajectory Guard: A Lightweight, Sequence-Aware Model" [12] | 2026 | Real-Time Anomaly Detection | Lightweight Sequence Model | Real-time sequence-aware anomaly detection in agentic AI. | Confounds static task difficulty with dynamic, execution-dependent failures; lacks mathematically rigorous bounding of false-alarm rates. |
+
+### Summary of the Research Gap
+
+The literature demonstrates a strict dichotomy: evaluations are either **outcome-based black boxes** (1) or **retrospectively contaminated** (2, 3). While early prospective models have emerged (4, 5, 6), they lack formal onset boundaries, fail to isolate dynamic execution risk from static task difficulty, and evaluate unthresholded metrics that mask the complete collapse of operational recall under strict false-alarm budgets. AIRE-Trace addresses this gap via standardized prefix-only prospective evaluation and trajectory risk decomposition.

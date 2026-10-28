@@ -1,0 +1,24 @@
+# Primary Evaluation Configuration (Mode A & Mode B)
+
+horizon_k: 30
+target_far: 0.05
+bootstrap_iterations: 500
+random_seed: 42
+
+metrics:
+  - "AUROC"
+  - "AUPRC"
+  - "Recall_at_FAR"
+  - "FAR"
+  - "Brier"
+  - "ECE"
+
+evaluation_modes:
+  mode_a:
+    name: "TerminalBench Prospective Warning Evaluation"
+    dataset: "terminalbench"
+    split: "test"
+  mode_b:
+    name: "tau-bench Eventual Outcome Diagnostic"
+    dataset: "tau2"
+    split: "eval_only"

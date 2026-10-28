@@ -1,0 +1,6 @@
+# Horizon K Sensitivity Evaluation Configuration
+
+sensitivity_horizons: [10, 20, 30]
+target_far: 0.05
+bootstrap_iterations: 500
+random_seed: 42
